@@ -1,0 +1,77 @@
+.avatar{
+  /* This image is 687 wide by 1024 tall, similar to your aspect ratio */
+  background-image: url("/default.png");
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+
+  
+  background-size: cover;
+
+  /* center the image vertically and horizontally */
+  background-position: top center;
+
+  /* round the edges to a circle with border radius 1/2 container size */
+  border-radius: 50%;
+}
+
+.profileMenu{
+  display: none;
+  top: 60px;
+  position: absolute;
+  
+  margin-left: -60px;
+  border-radius: 4px;
+  background-color: #fff;
+  /* background-color: #f9f9f9; */
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.profileMenu p {
+  align-items: initial;
+  border: none;
+  background-color: transparent;
+  cursor: auto;
+  width: 100%;
+  font-size: medium;
+  user-select: none;
+ 
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  padding: 10px 16px;
+}
+
+.profileMenu a, .profileMenu button {
+  
+  align-items: initial;
+  color: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 100%;
+  font-size: medium;
+  user-select: none;
+  
+ 
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  padding: 10px 16px;
+}
+
+.iconButton{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+
+.icon{
+  
+}
+.profileMenu .iconButton:hover, .profileMenu button:hover{
+  background-color: #d7d7d7;
+}

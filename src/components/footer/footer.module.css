@@ -1,0 +1,37 @@
+.footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /* height: 50px; */
+  padding: 20px 30px;
+  gap: 30px;
+
+  /* background-color: rgb(215, 215, 215); */
+}
+
+.logo{
+  display: flex;
+  text-align: center;
+}
+
+.links{
+  display: flex;
+  gap: 30px;
+
+  font-size: small;
+}
+
+.col{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.specialwidth{
+  width: 162px;
+}
+
+.title{
+  font-size: medium;
+  font-weight: bold;
+}
