@@ -10,9 +10,9 @@ export const GET = async (request) => {
 
   try {
     await connect();
-    console.log("connected")
+   
     const posts = await Post.find(username && { username });
-    console.log(posts)
+
     return new NextResponse(JSON.stringify(posts), { status: 200 });
   } catch (err) {
     return new NextResponse("Database Error", { status: 500 });
