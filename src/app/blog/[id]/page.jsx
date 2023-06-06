@@ -4,8 +4,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 async function getData(id) {
-  const res = await fetch(`${process.env.SERVER}/api/posts/${id}`);
-  
+  const res = await fetch(`${process.env.SERVER}/api/posts/${id}`,
+  { next: { revalidate: 10 } });
+
   if (!res.ok) {
     return notFound()
   }
