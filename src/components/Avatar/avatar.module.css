@@ -13,11 +13,13 @@
 
   /* round the edges to a circle with border radius 1/2 container size */
   border-radius: 50%;
+  position: relative;
 }
 
 .profileMenu{
   display: none;
-  top: 60px;
+  width: 160px;
+  top: 40px;
   position: absolute;
   
   margin-left: -60px;
