@@ -4,9 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 async function getData() {
-  const res = await fetch(process.env.SERVER+"/api/posts", {
-    cache: "no-store",
-  });
+  const res = await fetch(process.env.SERVER+"/api/posts");
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
