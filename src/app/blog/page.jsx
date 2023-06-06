@@ -19,26 +19,28 @@ const Blog = async () => {
   const data = await getData();
   
   return (
-    <div className={styles.mainContainer}>
-      {data.map((item) => (
-        <Link href={`/blog/${item._id}`} className={styles.container} key={item._id}>
-          <div className={styles.imageContainer}>
-            <Image
-              src={item.img}
-              alt=""
-              width={400}
-              height={250}
-              className={styles.image}
-            />
-          </div>
-          <div className={styles.content}>
-            <h1 className={styles.title}>{item.title}</h1>
-            <Date dateString={item.createdAt} />
-            <p className={styles.desc}>{item.summary}</p>
-            <p className={styles.author}>{item.author}</p>
-          </div>
-        </Link>
-      ))}
+    <div className={styles.blogPage}>
+      <div className={styles.postsList} >
+        {data.map((item) => (
+          <Link href={`/blog/${item._id}`} className={styles.post} key={item._id}>
+            <div className={styles.imageContainer}>
+              <Image
+                src={item.img}
+                alt=""
+                width={100}
+                height={100}
+                className={styles.image}
+              />
+            </div>
+            <div className={styles.content}>
+              <h1 className={styles.title}>{item.title}</h1>
+              <Date dateString={item.createdAt} />
+              <p className={styles.desc}>{item.summary}</p>
+              <p className={styles.author}>{item.author}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,24 +1,39 @@
-.container {
+.blogPostFullPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  
 }
 
-.top {
+.blogPost{
   display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  gap: 40px;
 }
 
 .info {
-  flex: 1;
+  gap: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  
 }
 
 .title{
   font-size: 40px;
 }
 
-.summary{
+.subTitle{
   font-size: 18px;
   font-weight: 300;
+}
+
+.row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .author {
@@ -32,20 +47,14 @@
   border-radius: 50%;
 }
 
-.imageContainer {
-  flex: 1;
-  height: 300px;
-  position: relative;
-}
+
 
 .image {
-  object-fit: cover;
+  object-fit: contain;
+  height: 300px;
+  width: auto;
 }
 
 .content {
-  margin-top: 50px;
-  font-size: 20px;
-  font-weight: 300;
-  color: #999;
   text-align: justify;
 }

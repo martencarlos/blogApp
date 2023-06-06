@@ -9,6 +9,7 @@ import Image from "next/image";
 import AddIcon from '@mui/icons-material/Add';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import Link from "next/link";
+import Loading from "@/components/Loading/Loading";
 
 
 const Dashboard = () => {
@@ -20,7 +21,7 @@ const Dashboard = () => {
     router.push("/login");
   }
   if (session.status === "loading") {
-    return <p>Loading...</p>;
+    return <Loading/>
   }
 
   if (session.status === "authenticated") {

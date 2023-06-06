@@ -10,6 +10,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 import axios from 'axios'
 import Link from "next/link";
+import Loading from "@/components/Loading/Loading";
  
 const fetcher = url => fetch(url).then(res => res.json())
 
@@ -26,7 +27,7 @@ const Dashboard = () => {
     router.push("/login");
   }
   if (session.status === "loading") {
-    return <p>Loading...</p>;
+    return <Loading/>;
   }
   
   if (session.status === "authenticated") {

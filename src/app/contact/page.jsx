@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
-import Button from "@/components/Button/Button";
+
 
 export const metadata = {
   title: "Lama Dev Contact Information",
@@ -10,14 +10,15 @@ export const metadata = {
 
 const Contact = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.contactFullPage}>
       <h1 className={styles.title}>Lets Keep in Touch</h1>
       <div className={styles.content}>
         <div className={styles.imgContainer}>
           <Image
             src="/contact.png"
             alt=""
-            fill={true}
+            width={500}
+            height={500}
             className={styles.image}
           />
         </div>
@@ -28,9 +29,9 @@ const Contact = () => {
             className={styles.textArea}
             placeholder="message"
             cols="30"
-            rows="10"
+            rows="8"
           ></textarea>
-          <Button url="#" text="Send"/>
+          <button className={styles.button} >Send</button>
         </form>
       </div>
     </div>
