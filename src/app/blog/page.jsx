@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import Date from "@/utils/date";
 
 async function getData() {
   const res = await fetch(process.env.SERVER+"/api/posts", 
@@ -32,8 +33,9 @@ const Blog = async () => {
           </div>
           <div className={styles.content}>
             <h1 className={styles.title}>{item.title}</h1>
-            <p className={styles.desc}>{item.desc}</p>
-            <p className={styles.username}>{item.username}</p>
+            <Date dateString={item.createdAt} />
+            <p className={styles.desc}>{item.summary}</p>
+            <p className={styles.author}>{item.author}</p>
           </div>
         </Link>
       ))}

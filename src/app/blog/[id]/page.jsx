@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
   const post = await getData(params.id)
   return {
     title: post.title,
-    description: post.desc,
+    description: post.summary,
   };
 }
 
@@ -31,7 +31,7 @@ const BlogPost = async ({ params }) => {
       <div className={styles.top}>
         <div className={styles.info}>
           <h1 className={styles.title}>{data.title}</h1>
-          <p className={styles.desc}>
+          <p className={styles.summary}>
             {data.desc}
           </p>
           <div className={styles.author}>
@@ -42,7 +42,7 @@ const BlogPost = async ({ params }) => {
               height={40}
               className={styles.avatar}
             />
-            <span className={styles.username}>{data.username}</span>
+            <span className={styles.username}>{data.author}</span>
           </div>
         </div>
         <div className={styles.imageContainer}>
@@ -55,12 +55,13 @@ const BlogPost = async ({ params }) => {
         </div>
       </div>
       <div className={styles.content}>
-        <p className={styles.text}>
-         {data.content}
-        </p>
+        <div dangerouslySetInnerHTML={{__html: data.content}} />
       </div>
     </div>
   );
 };
 
 export default BlogPost;
+ // <p className={styles.text}>
+        //  {data.content}
+        // </p>

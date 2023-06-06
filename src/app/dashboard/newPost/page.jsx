@@ -1,5 +1,5 @@
 "use client";
-import React, { use, useEffect, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
@@ -10,12 +10,14 @@ import AddIcon from '@mui/icons-material/Add';
 
 import axios from 'axios'
 import Link from "next/link";
+import Editor from "@/components/Editor/Editor";
  
 
 const Dashboard = () => {
 
   const session = useSession()
   const router = useRouter();
+  const text= useRef("text")
   
   
   if (session.status === "unauthenticated") {
@@ -28,19 +30,19 @@ const Dashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const title = e.target[0].value;
-    const desc = e.target[1].value;
+    const summary = e.target[1].value;
     const img = e.target[2].value;
-    const content = e.target[3].value;
+    const content = text.current;
 
     try {
       await fetch("/api/posts", {
         method: "POST",
         body: JSON.stringify({
           title,
-          desc,
+          summary,
           img,
           content,
-          username: session.data.user.name,
+          author: session.data.user.name,
         }),
       });
       mutate();
@@ -61,21 +63,23 @@ const Dashboard = () => {
     }
   };
 
+  function save(data) {
+    text.current = data;
+  }
+
   
   if (session.status === "authenticated") {
     return (
       <div className={styles.newPostPage}>
+        <Editor 
+          save={save}
+        />
         <form className={styles.newPostForm} onSubmit={handleSubmit}>
           <h1>Add New Post</h1>
           <input type="text" placeholder="Title" className={styles.input} />
-          <input type="text" placeholder="Desc" className={styles.input} />
+          <input type="text" placeholder="summary" className={styles.input} />
           <input type="text" placeholder="Image" className={styles.input} />
-          <textarea
-            placeholder="Content"
-            className={styles.content}
-            cols="30"
-            rows="10"
-          ></textarea>
+          
           <button className={styles.newPostButton}>Send</button>
         </form>
       </div>
@@ -85,4 +89,6 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
 

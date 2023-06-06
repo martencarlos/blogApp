@@ -28,43 +28,6 @@ const Dashboard = () => {
   if (session.status === "loading") {
     return <p>Loading...</p>;
   }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const title = e.target[0].value;
-    const desc = e.target[1].value;
-    const img = e.target[2].value;
-    const content = e.target[3].value;
-
-    try {
-      await fetch("/api/posts", {
-        method: "POST",
-        body: JSON.stringify({
-          title,
-          desc,
-          img,
-          content,
-          username: session.data.user.name,
-        }),
-      });
-      mutate();
-      e.target.reset()
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleDelete = async (id) => {
-    try {
-      await fetch(`/api/posts/${id}`, {
-        method: "DELETE",
-      });
-      mutate();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   
   if (session.status === "authenticated") {
     return (
@@ -72,14 +35,13 @@ const Dashboard = () => {
       <div className={styles.posts}>
         {isLoading ? "loading"
           : data.map((post) => (
-            
             <Link  href={`/blog/${post._id}`} id={post._id} className={styles.postListItem} key={post._id}>
               <div className={styles.imgContainer}>
-                  <Image src={post.img} alt="" width={200} height={100} />
+                  <Image className={styles.image} src={post.img} alt="" width={200} height={100} />
               </div>
               <h1 id={post._id} className={styles.title}>{post.title}</h1>
-              <h2 id={post._id} className={styles.summary}>{post.desc}</h2>
-              <p id={post._id} className={styles.author}>{post.username}</p>
+              <h2 id={post._id} className={styles.summary}>{post.summary}</h2>
+              <p id={post._id} className={styles.author}>{post.author}</p>
             </Link>
             ))}
       </div>

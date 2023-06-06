@@ -2,15 +2,18 @@
 /* POST */
 .posts{
   display: flex;
-  flex-direction: column;
-  
-  padding: 20px;
+  flex-wrap: wrap; 
+  flex: 1;
+  padding: 40px;
+
   gap: 20px;
 }
 
 .postListItem{
   display: flex;
   flex-direction: column;
+  max-width: 250px;
+  height: fit-content;
   margin:10px 0px;
   padding:10px;
   gap: 10px;
@@ -20,7 +23,13 @@
 .postListItem:hover{
   transform: scale(1.02);
   transition: transform 0.2s ease-in-out;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.image{
+  object-fit: cover;
+  height: 150px;
+  width: 100%;
 }
 
 .title{

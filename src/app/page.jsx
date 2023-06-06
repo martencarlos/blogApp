@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import Link from "next/link";
 
 
 export default function Home() {
@@ -17,9 +18,13 @@ export default function Home() {
           />
         </div>
         <div className={styles.textContainer}>
-          <h1 className={styles.title}>Create your own website</h1>
-          <p>Create a full-featured Website Application fast and effortlessly. Take a look at some website projects created with Webframe in the /solutions tab.</p>
-          <p>Wordpress, Webflow, Shopify, Squarespace or Wix are great for standard static website creation. But if you are looking to create your own professional Website Application without limitations and with the help of experts, try Webframe.</p>
+          <h1 className={styles.title}>Build Your Blog.<br/>Share Your Voice.</h1>
+          <p className={styles.subTitle}>{"Welcome to our blog creation site, where your ideas take center stage. Start writing, engage readers, and make your mark in the digital world. It's time to unleash your creativity and share your unique story with the world."}</p>
+          <br />
+          <Link className={styles.linkButton} href="/dashboard">
+            {"Let's get started!"}
+          </Link>
+          
         </div>
       </div>
     </main>

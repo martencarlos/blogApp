@@ -11,30 +11,26 @@ import { signOut, useSession } from "next-auth/react";
 
 const links = [
   {
-    id: 2,
-    title: "Portfolio",
-    url: "/portfolio",
+    id: 1,
+    title: "Dashboard",
+    url: "/dashboard",
   },
   {
-    id: 3,
+    id: 2,
     title: "Blog",
     url: "/blog",
   },
   {
-    id: 4,
+    id: 3,
     title: "About",
     url: "/about",
   },
   {
-    id: 5,
+    id: 4,
     title: "Contact",
     url: "/contact",
-  },
-  {
-    id: 6,
-    title: "Dashboard",
-    url: "/dashboard",
-  },
+  }
+  
 ];
 
 const Navbar = () => {
@@ -43,7 +39,7 @@ const Navbar = () => {
   return (
     <div className={styles.navbar}>
       <Link href="/" className={styles.logo}>
-        Webframe
+        Webframe - Blog
       </Link>
       <div className={styles.links}>
         
@@ -52,10 +48,11 @@ const Navbar = () => {
             {link.title}
           </Link>
         ))}
-      
-        <Avatar/>
-        <DarkModeToggle />
       </div>
+      <div className={styles.right}>
+          <Avatar/>
+          <DarkModeToggle />
+        </div>
     </div>
   );
 };

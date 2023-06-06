@@ -7,7 +7,7 @@
 /* SIDEBAR */
 
 .sidebar{
-  background: rgb(5, 68, 104);
+  
   position: relative;
   height: 100%;
 
@@ -31,12 +31,12 @@
 }
 
 .sidebar .profile h3{
-  color: #ffffff;
-  margin: 10px 0 5px;
+  color: #747474;
+  margin: 10px 10px 5px;
 }
 
 .sidebar .profile p{
-  color: rgb(206, 240, 253);
+  
   font-size: 14px;
 }
 
@@ -44,23 +44,22 @@
 .sidebar ul li a{
   display: block;
   padding: 13px 30px;
-  border-bottom: 1px solid #10558d;
-  color: rgb(241, 237, 237);
+ 
   font-size: 16px;
   position: relative;
 }
 
 .sidebar ul li a .icon{
-  color: #dee4ec;
+  
   width: 30px;
   display: inline-block;
 }
 
 .sidebar ul li a:hover,
 .sidebar ul li a.active{
+    font-weight: 600;
     color: #0c7db1;
-
-    background:white;
+    background-color: lightgrey;
     border-right: 2px solid rgb(5, 68, 104);
 }
 

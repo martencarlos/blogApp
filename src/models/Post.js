@@ -8,7 +8,7 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
-    desc: {
+    summary: {
       type: String,
       required: true,
     },
@@ -20,7 +20,7 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
-    username: {
+    author: {
       type: String,
       required: true,
     },
