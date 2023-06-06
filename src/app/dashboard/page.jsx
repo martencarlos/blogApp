@@ -72,15 +72,15 @@ const Dashboard = () => {
       <div className={styles.posts}>
         {isLoading ? "loading"
           : data.map((post) => (
-
-            <div id={post._id} className={styles.postListItem} key={post._id}>
+            
+            <Link  href={`/blog/${item._id}`} id={post._id} className={styles.postListItem} key={post._id}>
               <div className={styles.imgContainer}>
                   <Image src={post.img} alt="" width={200} height={100} />
               </div>
               <h1 id={post._id} className={styles.title}>{post.title}</h1>
               <h2 id={post._id} className={styles.summary}>{post.desc}</h2>
               <p id={post._id} className={styles.author}>{post.username}</p>
-            </div>
+            </Link>
             ))}
       </div>
     )
@@ -89,19 +89,3 @@ const Dashboard = () => {
 
 export default Dashboard;
 
-// <div className={styles.container}>
-        
-//         <form className={styles.new} onSubmit={handleSubmit}>
-//           <h1>Add New Post</h1>
-//           <input type="text" placeholder="Title" className={styles.input} />
-//           <input type="text" placeholder="Desc" className={styles.input} />
-//           <input type="text" placeholder="Image" className={styles.input} />
-//           <textarea
-//             placeholder="Content"
-//             className={styles.textArea}
-//             cols="30"
-//             rows="10"
-//           ></textarea>
-//           <button className={styles.button}>Send</button>
-//         </form>
-//       </div>
