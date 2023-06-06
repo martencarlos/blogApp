@@ -73,7 +73,7 @@ const Dashboard = () => {
         {isLoading ? "loading"
           : data.map((post) => (
             
-            <Link  href={`/blog/${item._id}`} id={post._id} className={styles.postListItem} key={post._id}>
+            <Link  href={`/blog/${post._id}`} id={post._id} className={styles.postListItem} key={post._id}>
               <div className={styles.imgContainer}>
                   <Image src={post.img} alt="" width={200} height={100} />
               </div>
