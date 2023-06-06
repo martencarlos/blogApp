@@ -4,7 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 async function getData() {
-  const res = await fetch(process.env.SERVER+"/api/posts");
+  const res = await fetch(process.env.SERVER+"/api/posts", 
+    { next: { revalidate: 10 } });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -32,6 +33,7 @@ const Blog = async () => {
           <div className={styles.content}>
             <h1 className={styles.title}>{item.title}</h1>
             <p className={styles.desc}>{item.desc}</p>
+            <p className={styles.username}>{item.username}</p>
           </div>
         </Link>
       ))}
