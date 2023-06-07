@@ -71,16 +71,17 @@ const Dashboard = () => {
   if (session.status === "authenticated") {
     return (
       <div className={styles.newPostPage}>
+      
         <Editor 
           save={save}
         />
         <form className={styles.newPostForm} onSubmit={handleSubmit}>
-          <h1>Add New Post</h1>
+          <h1>Post settings</h1>
           <input type="text" placeholder="Title" className={styles.input} />
           <input type="text" placeholder="summary" className={styles.input} />
           <input type="text" placeholder="Image" className={styles.input} />
           
-          <button className={styles.newPostButton}>Send</button>
+          <button className={styles.newPostButton}>Publish</button>
         </form>
       </div>
       

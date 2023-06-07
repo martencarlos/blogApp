@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import {useState, useContext} from "react";
 import styles from "./sidebar.module.css";
 
 import { useSession } from "next-auth/react";
@@ -8,15 +8,26 @@ import Image from "next/image";
 
 import AddIcon from '@mui/icons-material/Add';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import SettingsIcon from '@mui/icons-material/Settings';
+import ToggleOnIcon from '@mui/icons-material/ToggleOn';
+import MenuIcon from '@mui/icons-material/Menu';
+
 import Link from "next/link";
 import Loading from "@/components/Loading/Loading";
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { Javascript } from "@mui/icons-material";
+import { ThemeContext } from "../../context/ThemeContext";
 
 
-const Dashboard = () => {
+const Dashboard = (props) => {
 
   const session = useSession()
   const router = useRouter();
+
+  const { mode } = useContext(ThemeContext);
+
+  const [collapsed, setCollapsed] = useState(true);
 
   if (session.status === "unauthenticated") {
     router.push("/login");
@@ -27,15 +38,20 @@ const Dashboard = () => {
 
   if (session.status === "authenticated") {
     return (
-      <Sidebar collapsed={true}>
-        <Menu>
-          <SubMenu active={true} icon= <DashboardRoundedIcon/> label="Charts">
-            <MenuItem > Pie charts </MenuItem>
-            <MenuItem> Line charts </MenuItem>
+      <Sidebar width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>
+        <Menu closeOnClick={false}>
+          <MenuItem
+            className={styles.menuItem}
+            icon= <MenuIcon/> 
+            onClick={() => setCollapsed(!collapsed)}>  </MenuItem>
+          <MenuItem className={styles.menuItem} icon= <DashboardRoundedIcon/> component={<Link href="/dashboard/"/>}> Dashboard </MenuItem>
+          <MenuItem className={styles.menuItem} icon= <AddIcon/> component={<Link href="/dashboard/newPost"/>}> New Post </MenuItem>
+          <SubMenu  className={styles.subMenu} icon= <SettingsIcon/>  label="Settings">
+            <MenuItem className={styles.menuItem} icon= <ManageAccountsIcon/> component={<Link href="/dashboard/account"/>} > Account </MenuItem>
+            <MenuItem className={styles.menuItem} icon= <ToggleOnIcon/>  component={<Link href="" />} > App settings </MenuItem>
           </SubMenu>
-          <MenuItem> Documentation </MenuItem>
-          <MenuItem> Calendar </MenuItem>
         </Menu>
+
       </Sidebar>
     )
   }

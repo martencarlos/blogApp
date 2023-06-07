@@ -54,6 +54,13 @@ a {
 }
 
 
+/* Sidebar */
+
+
+/* [class*="dashboard"] .ps-menu-button:hover{
+  background-color: var(--primary-color) !important;
+  color: white !important;
+} */
 
 /* Lexical */
 
@@ -94,9 +101,13 @@ h1 {
 }
 
 .editor-container {
-  margin: 0px auto;
+  padding: 10px 10px;
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+  width: 100%;
   border-radius: 2px;
-  max-width: 600px;
+  /* max-width: 600px; */
   color: #000;
   position: relative;
   line-height: 20px;
@@ -394,6 +405,8 @@ pre::-webkit-scrollbar-thumb {
 
 .toolbar {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: 1px;
   background: #fff;
   padding: 4px;

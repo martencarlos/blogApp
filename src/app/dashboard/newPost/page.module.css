@@ -1,22 +1,32 @@
 
+
+@media screen and (max-width: 600px) {
+  .newPostPage{
+    flex-direction: column;
+    
+  }
+}
+  
+
 /* NEW POST */
 .newPostPage{
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  
   align-items: center;
-  background-color: rgb(225, 225, 225);
+  /* background-color: rgb(225, 225, 225); */
   flex:1;
 }
 
 .newPostForm{
   display:flex;
   justify-content: center;
-  margin:0px auto;
+  width: 100%;
+  flex:1;
+  /* margin:0px auto; */
   flex-direction: column;
-  max-width: 300px;
+  /* max-width: 300px; */
   gap: 10px;
-
 }
 
 .input{

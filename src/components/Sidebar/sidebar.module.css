@@ -6,6 +6,8 @@
 }
 /* SIDEBAR */
 
+
+
 .sidebar{
   
   position: relative;
@@ -16,6 +18,21 @@
   padding: 20px 0;
   transition: all 0.5s ease;
 }
+
+
+.menuItem:hover a{
+  background-color: var(--primary-color) !important;
+  color: white !important;
+} 
+.menuItem a{
+  background-color: inherit !important;
+} 
+
+.subMenu:first-child{
+  background-color: pink !important;
+  color: white !important;
+}
+
 
 .sidebar .profile{
   margin-bottom: 30px;

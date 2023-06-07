@@ -5,7 +5,7 @@ import Post from "@/models/Post";
 export const GET = async (request) => {
 
   const url = new URL(request.url);
-  console.log(url);
+ 
   const username = url.searchParams.get("username");
 
   try {

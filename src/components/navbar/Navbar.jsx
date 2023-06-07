@@ -58,7 +58,7 @@ const Navbar = () => {
         if(navMenu.style.display === "flex") {
           navMenu.style.display = "none"
         }
-        console.log("You clicked outside of me!");
+       
       }
       }, 100);
     }

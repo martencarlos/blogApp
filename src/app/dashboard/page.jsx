@@ -8,7 +8,7 @@ import Image from "next/image";
 
 import AddIcon from '@mui/icons-material/Add';
 
-import axios from 'axios'
+
 import Link from "next/link";
 import Loading from "@/components/Loading/Loading";
  
@@ -34,7 +34,7 @@ const Dashboard = () => {
     return (
       
       <div className={styles.posts}>
-        {isLoading ? "loading"
+        {isLoading ? <Loading/>
           : data.map((post) => (
             <Link  href={`/blog/${post._id}`} id={post._id} className={styles.postListItem} key={post._id}>
               <div className={styles.imgContainer}>
