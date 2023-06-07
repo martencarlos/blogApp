@@ -5,9 +5,22 @@
     padding: 10px !important;
   }
 
+  .imageContainer{
+    width: 100%;
+    justify-content: flex-end !important;
+    padding-right: 30px;
+  }
+
+  .textContainer{
+    transform: translate(0px, -60px);
+  }
+  .title{
+    transform: translate(0px, -30px);
+  }
+
   .featureImage{
-    width: 170px !important;
-  
+    width: 100px !important;
+
   }
 
   .title{
@@ -16,6 +29,10 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  .landingPage{
+    flex-direction: column
+    }
 
   .textContainer{
    font-size: small !important;
@@ -67,7 +84,7 @@
 }
 
 .title{
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   background: linear-gradient(to bottom,grey,#e3e3e3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
