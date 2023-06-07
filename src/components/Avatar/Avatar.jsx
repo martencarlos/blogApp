@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useContext } from "react";
+import React, { useContext,useEffect } from "react";
 import Link from 'next/link'
 import styles from "./avatar.module.css";
 
@@ -10,12 +10,26 @@ import ManageAccountsRoundedIcon from '@mui/icons-material/ManageAccountsRounded
 import PersonAddAlt1RoundedIcon from '@mui/icons-material/PersonAddAlt1Rounded';
 
 import { signOut, useSession } from 'next-auth/react';
+import { ThemeContext } from "../../context/ThemeContext";
 import { mutate } from "swr";
 
-const DarkModeToggle = () => {
+const Avatar = () => {
   
   const session = useSession()
+  const { mode} = useContext(ThemeContext);
 
+    // Dark mode profileMenu
+    useEffect(() => {
+      const profileMenu = document.getElementById("profileMenu");
+  
+      if (navMenu && mode === "dark") {
+        profileMenu.classList.add(styles.profileMenuDark);
+      } else if (navMenu && mode === "light"){
+        profileMenu.classList.remove(styles.profileMenuDark);
+      }
+  
+    }, [mode]);
+  
   function showProfileMenu() {
     // const profileMenuStyle = window.getComputedStyle(document.getElementById("profileMenu"))
     var elms = document.querySelectorAll("[id='profileMenu']");
@@ -32,7 +46,8 @@ const DarkModeToggle = () => {
 
   return (
     <div onClick={showProfileMenu} className={styles.avatar}>
-        {session.status === "authenticated" ?
+        
+      {session.status === "authenticated" ?
           <div id='profileMenu' className={styles.profileMenu}>
             <p>{session.data.user.name}</p>
             <div className={styles.iconButton}>
@@ -57,8 +72,8 @@ const DarkModeToggle = () => {
             </div>
           </div>
         } 
-        </div>
+    </div>
   );
 };
 
-export default DarkModeToggle;
+export default Avatar;

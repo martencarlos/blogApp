@@ -20,9 +20,11 @@ const Blog = async () => {
   
   return (
     <div className={styles.blogPage}>
+      
       <div className={styles.postsList} >
         {data.map((item) => (
           <Link href={`/blog/${item._id}`} className={styles.post} key={item._id}>
+            
             <div className={styles.imageContainer}>
               <Image
                 src={item.img}
@@ -32,12 +34,14 @@ const Blog = async () => {
                 className={styles.image}
               />
             </div>
+
             <div className={styles.content}>
               <h1 className={styles.title}>{item.title}</h1>
               <Date dateString={item.createdAt} />
               <p className={styles.desc}>{item.summary}</p>
               <p className={styles.author}>{item.author}</p>
             </div>
+            
           </Link>
         ))}
       </div>

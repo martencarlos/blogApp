@@ -49,13 +49,10 @@ const Navbar = () => {
 
   const { mode } = useContext(ThemeContext);
 
+  // NavMenu click outside handler
   useEffect(() => {
-    /**
-     * Alert if clicked on outside of element
-     */
     function handleClickOutside(event) {
       const navMenu = document.getElementById("navMenu")
-    
       setTimeout(() => {
         if (typeof event.target.className.includes !== 'undefined' && !event.target.className.includes("avatar") && event.target.tagName !== "path" && event.target.tagName !== "svg") {
         if(navMenu.style.display === "flex") {
@@ -64,16 +61,25 @@ const Navbar = () => {
         console.log("You clicked outside of me!");
       }
       }, 100);
-      
     }
-    // Bind the event listener
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      // Unbind the event listener on clean up
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  // Dark mode navMenu
+  useEffect(() => {
+    const navMenu = document.getElementById("navMenu");
+
+    if (navMenu && mode === "dark") {
+      navMenu.classList.add(styles.navMenuDark);
+    } else if (navMenu){
+      navMenu.classList.remove(styles.navMenuDark);
+    }
+
+  }, [mode]);
 
   return (
     <div className={styles.navbar}>
@@ -101,7 +107,7 @@ const Navbar = () => {
       </div>
 
       {/* Menu - hidden  */}
-      <div className={[styles.navMenu, mode].join(" ")} id="navMenu">
+      <div className={styles.navMenu} id="navMenu">
         
         <div className={styles.menuLinks}>
           {links.map((link) => (

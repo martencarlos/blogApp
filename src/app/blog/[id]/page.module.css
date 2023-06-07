@@ -1,21 +1,22 @@
+
+
 .blogPostFullPage {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   flex: 1;
-  
 }
 
 .blogPost{
   display: flex;
   flex-direction: column;
-  max-width: 1000px;
+  margin: 30px 15px;
   gap: 40px;
 }
 
 .info {
-  gap: 20px;
+  gap: 30px;
   display: flex;
   flex-direction: column;
   
@@ -23,6 +24,7 @@
 
 .title{
   font-size: 40px;
+  color: inherit;
 }
 
 .subTitle{
@@ -50,9 +52,9 @@
 
 
 .image {
-  object-fit: contain;
-  height: 300px;
-  width: auto;
+  display: flex;
+  width: 100%;
+  height:auto;
 }
 
 .content {

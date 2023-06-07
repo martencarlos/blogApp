@@ -1,14 +1,36 @@
+
+@media screen and (max-width: 600px) {
+  .content{
+    flex-direction: column;
+    gap:10px !important;
+    margin: 20px 0px !important;
+    width: 100% !important;
+
+  }
+  .imgContainer{
+    width: 100%;
+
+  }
+  .form{
+    width: 100%;
+  }
+  
+
+}
+
 .contactFullPage {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
 }
 
 .title {
-  font-size: 60px;
+  font-size: 50px;
   margin: 20px 0px;
   text-align: center;
+  color: inherit;
 }
 
 .content {
@@ -16,47 +38,42 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin: 20px 0px;
+  margin: 0px 0px;
   gap: 50px;
 }
 
 .imgContainer {
   position: relative;
-  height: 100%;
-  width: 500px;
+  display: flex;
+  justify-content: center;
 }
 
 .image {
   object-fit: contain;
+  height: 100%;
+  max-width: 400px;
   animation: move 6s infinite ease alternate;
-}
-
-@keyframes move {
-  from {
-    transform: translateY(-15px);
-  }
-  to {
-    transform: translateY(0px) scale(1.03);
-  }
 }
 
 .form {
   flex: 1;
-  padding: 30px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 
 .input,
 .textArea {
-  padding: 20px;
+  padding: 10px;
   background-color: transparent;
   border: none;
   outline: none;
+  color: inherit;
   
-  border: 2px solid #bbb;
-  font-size: 20px;
+  border: 2px solid #cbcbcb;
+  border-radius: 4px;
+  font-size: 16px;
   font-weight: bold;
 }
 
@@ -70,4 +87,17 @@
   height: 50px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.button:hover{
+  background-color: var(--primary-selected);
+}
+
+@keyframes move {
+  from {
+    transform: translateY(-15px);
+  }
+  to {
+    transform: translateY(0px) scale(1.03);
+  }
 }

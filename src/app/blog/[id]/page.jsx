@@ -57,7 +57,7 @@ const BlogPost = async ({ params }) => {
           src={data.img}
           alt=""
           height={300}
-          width={200}
+          width={100}
           className={styles.image}
         />
       

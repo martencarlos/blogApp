@@ -1,8 +1,10 @@
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 680px) {
  
-  
-  
+  .navbar{
+    padding: 0px 10px !important;
+  }
+
   /* hide links and avatar */
   .links, .right{
     display: none !important;
@@ -14,7 +16,7 @@
   }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 680px) {
   .navMenu{
     display: none !important;
   }
@@ -29,7 +31,7 @@
   flex-wrap: wrap;
   position:relative;
   min-height:70px;
-  padding: 0px 40px;
+  padding: 0px 30px;
 
   /* background-color: #dbdbdb; */
 }
@@ -41,6 +43,7 @@
 .logo {
   font-weight: bold;
   font-size: 22px;
+  margin-bottom: 5px;
 }
 
 .links {
@@ -60,6 +63,8 @@
 .menuButton{
   display: none;
   cursor: pointer;
+  padding:5px;
+  border-radius: 50%;
 }
 
 .menuIcon{
@@ -78,6 +83,10 @@
   padding: 30px;
   background-color: white;
   z-index: 1;
+}
+
+.navMenuDark{
+  background-color: rgb(19, 19, 19) !important;
 }
 
 /* .theme.dark ~ .navMenu{
