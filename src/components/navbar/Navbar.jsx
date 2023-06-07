@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { use, useEffect } from "react";
 import styles from "./navbar.module.css";
 import Avatar from "../Avatar/Avatar";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
@@ -33,22 +33,19 @@ const links = [
   
 ];
 
+function toggleMenu() {
+  const navMenu = window.getComputedStyle(document.getElementById("navMenu"))
+  
+  if(navMenu.getPropertyValue("display") === "none") { 
+    document.getElementById("navMenu").style.display = "flex"
+  } else {
+    document.getElementById("navMenu").style.display = "none"
+  }
+}
+
 const Navbar = () => {
   const session = useSession();
 
-  function toggleMenu() {
-    const links = window.getComputedStyle(document.getElementById("links"))
-    // const right = window.getComputedStyle(document.getElementById("right"))
-    console.log(links.getPropertyValue("display"))
-    if(links.getPropertyValue("display") === "none") {
-      console.log("changing to flex")
-      document.getElementById("links").style.display = "flex"
-      document.getElementById("right").style.display = "flex"
-    } else {
-      document.getElementById("links").style.display = "none"
-      document.getElementById("right").style.display = "none"
-    }
-  }
 
   return (
     <div className={styles.navbar}>
@@ -57,7 +54,7 @@ const Navbar = () => {
         Webframe 
       </Link>
 
-      <div className={styles.links} id="links">
+      <div className={styles.links}>
       {links.map((link) => (
         <Link key={link.id} href={link.url} className={styles.link}>
           {link.title}
@@ -65,15 +62,34 @@ const Navbar = () => {
         ))}
       </div>
 
-      <div id="right" className={styles.right}>
+      <div className={styles.right}>
           <Avatar/>
           <DarkModeToggle />
       </div>
 
+      {/* Menu button - hidden  */}
       <div className={styles.menuButton} onClick={toggleMenu}>
         <MenuIcon className={styles.menuIcon}/>
       </div>
+
+      {/* Menu - hidden  */}
+      <div className={styles.navMenu} id="navMenu">
+        
+        <div className={styles.menuLinks}>
+          {links.map((link) => (
+          <Link key={link.id} href={link.url} className={styles.link}>
+            {link.title}
+          </Link>
+        ))}
+        </div>
+
+        <div className={styles.menuRight}>
+          <Avatar/>
+          <DarkModeToggle />
+        </div>
+
     </div>
+  </div>
   );
 };
 

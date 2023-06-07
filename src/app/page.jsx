@@ -12,8 +12,8 @@ export default function Home() {
             className={styles.featureImage}
             src="/featureImage.webp"
             alt="Feature Image"
-            width={300}
-            height={600}
+            width={200}
+            height={300}
             priority
           />
         </div>

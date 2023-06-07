@@ -13,6 +13,7 @@ export const metadata = {
   description: 'Design and build your own website',
 }
 
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

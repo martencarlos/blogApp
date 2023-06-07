@@ -17,14 +17,16 @@ const DarkModeToggle = () => {
   const session = useSession()
 
   function showProfileMenu() {
-    const profileMenuStyle = window.getComputedStyle(document.getElementById("profileMenu"))
-
-    if(profileMenuStyle.getPropertyValue("display") === "none") {
-      document.getElementById("profileMenu").style.display = "block"
-    } else {
-      document.getElementById("profileMenu").style.display = "none"
+    // const profileMenuStyle = window.getComputedStyle(document.getElementById("profileMenu"))
+    var elms = document.querySelectorAll("[id='profileMenu']");
+ 
+    for(var i = 0; i < elms.length; i++) {
+      if(elms[i].style.display === "none") {
+        elms[i].style.display = "block"
+      } else {
+        elms[i].style.display = "none"
+      }
     }
-  
   }
 
   return (
@@ -52,7 +54,6 @@ const DarkModeToggle = () => {
               <PersonAddAlt1RoundedIcon className={styles.icon}/>
               <Link href={"/register"}>Register</Link>
             </div>
-            
           </div>
         } 
         </div>

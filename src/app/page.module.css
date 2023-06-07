@@ -4,6 +4,26 @@
   .main {
     padding: 10px !important;
   }
+
+  .featureImage{
+    width: 170px !important;
+  
+  }
+
+  .title{
+    margin-bottom: 10px !important;
+    background: linear-gradient(to bottom,grey,#e3e3e3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .textContainer{
+   font-size: small !important;
+   margin: 10px 0px !important;
+  }
+
+
+
 }
 
 .main {
@@ -16,10 +36,11 @@
 .featureImage{
   display: flex;
   object-fit: cover;
+  width: 300px;
   height: auto;
 
   transform: translatey(0px);
-	animation: float 5s ease-in-out infinite;
+	animation: floatup 5s ease-in-out infinite;
 }
 
 .landingPage{
@@ -118,7 +139,7 @@
 }
 
 
-@keyframes float {
+@keyframes floatup {
 	0% {
 		transform: translatey(0px);
 	}
@@ -129,3 +150,4 @@
 		transform: translatey(0px);
 	}
 }
+
