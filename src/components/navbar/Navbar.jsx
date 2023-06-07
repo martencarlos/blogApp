@@ -69,7 +69,7 @@ const Navbar = () => {
 
       {/* Menu button - hidden  */}
       <div className={styles.menuButton} onClick={toggleMenu}>
-        <MenuIcon className={styles.menuIcon}/>
+        <MenuIcon fontSize="large" className={styles.menuIcon}/>
       </div>
 
       {/* Menu - hidden  */}
