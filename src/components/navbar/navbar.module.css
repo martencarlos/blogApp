@@ -1,9 +1,7 @@
 
 @media screen and (max-width: 600px) {
  
-  .navMenu{
-    
-  }
+  
   
   /* hide links and avatar */
   .links, .right{
@@ -17,7 +15,9 @@
 }
 
 @media screen and (min-width: 600px) {
- 
+  .navMenu{
+    display: none !important;
+  }
   
 }
 
@@ -32,6 +32,10 @@
   padding: 0px 40px;
 
   /* background-color: #dbdbdb; */
+}
+
+.link{
+  z-index: 2;
 }
 
 .logo {
@@ -72,9 +76,13 @@
   top: 70px;
   left: 0px;
   padding: 30px;
-  background-color: rgb(249, 249, 249);
+  background-color: white;
   z-index: 1;
 }
+
+/* .theme.dark ~ .navMenu{
+  background-color: rgb(30, 30, 30);
+} */
 
 .menuLinks{
   display: flex;

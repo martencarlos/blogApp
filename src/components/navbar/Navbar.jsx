@@ -1,23 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import React, { use, useEffect } from "react";
+import React, { useEffect,useContext } from "react";
 import styles from "./navbar.module.css";
 import Avatar from "../Avatar/Avatar";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 import { signOut, useSession } from "next-auth/react";
 import MenuIcon from '@mui/icons-material/Menu';
-
+import { ThemeContext } from "../../context/ThemeContext";
 
 const links = [
   {
     id: 1,
-    title: "Dashboard",
+    title: " My Dashboard",
     url: "/dashboard",
   },
   {
     id: 2,
-    title: "Blog",
+    title: "Discover",
     url: "/blog",
   },
   {
@@ -43,9 +43,37 @@ function toggleMenu() {
   }
 }
 
+
 const Navbar = () => {
   const session = useSession();
 
+  const { mode } = useContext(ThemeContext);
+
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event) {
+      const navMenu = document.getElementById("navMenu")
+    
+      setTimeout(() => {
+        if (typeof event.target.className.includes !== 'undefined' && !event.target.className.includes("avatar") && event.target.tagName !== "path" && event.target.tagName !== "svg") {
+        if(navMenu.style.display === "flex") {
+          navMenu.style.display = "none"
+        }
+        console.log("You clicked outside of me!");
+      }
+      }, 100);
+      
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={styles.navbar}>
@@ -73,7 +101,7 @@ const Navbar = () => {
       </div>
 
       {/* Menu - hidden  */}
-      <div className={styles.navMenu} id="navMenu">
+      <div className={[styles.navMenu, mode].join(" ")} id="navMenu">
         
         <div className={styles.menuLinks}>
           {links.map((link) => (

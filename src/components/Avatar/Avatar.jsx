@@ -19,9 +19,10 @@ const DarkModeToggle = () => {
   function showProfileMenu() {
     // const profileMenuStyle = window.getComputedStyle(document.getElementById("profileMenu"))
     var elms = document.querySelectorAll("[id='profileMenu']");
- 
+    
     for(var i = 0; i < elms.length; i++) {
-      if(elms[i].style.display === "none") {
+      console.log(elms[i].style.display)
+      if(elms[i].style.display === "none" || elms[i].style.display === "") {
         elms[i].style.display = "block"
       } else {
         elms[i].style.display = "none"
