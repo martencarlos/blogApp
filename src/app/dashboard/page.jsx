@@ -6,14 +6,21 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-import AddIcon from '@mui/icons-material/Add';
-
-
 import Link from "next/link";
 import Loading from "@/components/Loading/Loading";
  
 const fetcher = url => fetch(url).then(res => res.json())
 
+const handleDelete = async (id) => {
+  try {
+    await fetch(`/api/posts/${id}`, {
+      method: "DELETE",
+    });
+    mutate();
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 const Dashboard = () => {
 

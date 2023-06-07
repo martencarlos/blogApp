@@ -21,7 +21,7 @@ const HtmlPlugin = ({ initialHtml, onHtmlChanged }) => {
             const nodes = $generateNodesFromDOM(editor, dom);
             $insertNodes(nodes);
         });
-    }, []);
+    }, [editor, initialHtml, isFirstRender]);
 
     return (
         <OnChangePlugin
