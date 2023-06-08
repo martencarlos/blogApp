@@ -57,16 +57,26 @@ const EditorSidebar = (props) => {
 
     //upload image
  
-
+      const info = JSON.stringify({
+        title,
+        summary,
+        img,
+        content,
+        author: session.data.user.name,
+      })
       var input = document.querySelector('input[type="file"]')
       const image = input.files[0];
       
       const body = new FormData();
       body.append("file", image);
-      const response = await fetch("/api/images", {
+      body.append("info", info);
+      
+      const response = await fetch("/api/posts", {
         method: "POST",
         body
-      });
+      })
+      mutate();
+      e.target.reset()
      
   };
 

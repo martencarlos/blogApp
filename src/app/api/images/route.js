@@ -21,7 +21,8 @@ export const POST = async (req) => {
 
     const f = await req.formData();
     const obj = Object.fromEntries(f);    
-
+    console.log(f)
+    console.log(obj)
     Object.entries(obj).forEach( async([k, v]) => {
         if( !!v.type ) { // If it's a file, values like image/png are passed over.
             const b = await v.arrayBuffer();
@@ -30,8 +31,6 @@ export const POST = async (req) => {
             fs.writeFileSync(`./public/${k}.jpeg`, buff);
         }
     });
-
-
 
 
     return new NextResponse("Image saved", { status: 201 });
