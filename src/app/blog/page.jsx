@@ -4,20 +4,11 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import Date from "@/utils/date";
+import { getAllPosts } from "@/app/lib/getAllPosts";
 
-async function getData() {
-  const res = await fetch(process.env.SERVER+"/api/posts", 
-    { next: { revalidate: 60*15 } });
-
-  if (!res.ok) {
-    throw new Error("Failed to retrieve data");
-  }
-
-  return res.json();
-}
 
 const Blog = async () => {
-  const data = await getData();
+  const data = await getAllPosts()
   
   return (
     <div className={styles.blogPage}>

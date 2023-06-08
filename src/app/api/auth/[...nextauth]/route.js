@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import User from "@/models/User";
-import connect from "@/utils/db";
+import dbConnect from "../../../lib/dbConnect";
 import bcrypt from "bcryptjs";
 
 const handler = NextAuth({
@@ -12,7 +12,7 @@ const handler = NextAuth({
       name: "Credentials",
       async authorize(credentials) {
         //Check if the user exists.
-        await connect();
+        await dbConnect();
 
         try {
           const user = await User.findOne({

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import connect from "@/utils/db";
+import dbConnect from "../../lib/dbConnect";
 import Post from "@/models/Post";
 
 export const GET = async (request) => {
@@ -9,9 +9,11 @@ export const GET = async (request) => {
   const username = url.searchParams.get("username");
 
   try {
-    await connect();
-   
+
+    await dbConnect();
+
     const posts = await Post.find(username && { username });
+    
 
     return new NextResponse(JSON.stringify(posts), { status: 200 });
   } catch (err) {
@@ -25,7 +27,7 @@ export const POST = async (request) => {
   const newPost = new Post(body);
 
   try {
-    await connect();
+    await dbConnect();
 
     await newPost.save();
 
