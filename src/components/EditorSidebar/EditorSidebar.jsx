@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import SettingsIcon from '@mui/icons-material/Settings';
-import MenuIcon from '@mui/icons-material/Menu';
+import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 
 import Loading from "@/components/Loading/Loading";
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
@@ -106,7 +106,7 @@ const EditorSidebar = (props) => {
           
         <MenuItem
             className={[styles.menuItem, styles.title].join(" ")}
-            icon= <MenuIcon/> 
+            icon= <MoreVertRoundedIcon/> 
             onClick={() => setCollapsed(!collapsed)}> Post settings </MenuItem>
           <br/>
           

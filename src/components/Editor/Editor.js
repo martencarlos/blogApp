@@ -43,20 +43,23 @@ function saveContent(data) {
 
 function loadContent() {
   const content = localStorage.getItem("draft");
+  console.log("loadContent")
   console.log(content)
-  if (content) {
+  if (content!==null) {
     return content;
+  }else{
+    const value = '{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}';
+    return value;
   }
-  return "";
+  
 }
 
 
 
 export default  function Editor(props) {
-
+ 
   const initialEditorState =  loadContent();
-  const editorStateRef = useRef();
-  
+  const editorStateRef = useRef({});
  
   const editorConfig = {
     // The editor theme
