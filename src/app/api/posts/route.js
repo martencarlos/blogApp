@@ -5,7 +5,6 @@ import Post from "@/models/Post";
 export const GET = async (request) => {
 
   const url = new URL(request.url);
- 
   const username = url.searchParams.get("username");
 
   try {
@@ -14,7 +13,6 @@ export const GET = async (request) => {
 
     const posts = await Post.find(username && { username });
     
-
     return new NextResponse(JSON.stringify(posts), { status: 200 });
   } catch (err) {
     return new NextResponse("Database Error", { status: 500 });

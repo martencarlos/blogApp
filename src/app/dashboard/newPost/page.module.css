@@ -26,11 +26,11 @@
   height: 100%;
 }
 
-.editorSidebar{
+.postSettingsSidebar{
   display:flex;
   height: 100%;
-  color: red;
 }
+
 
 .newPostForm{
   display:flex;

@@ -24,35 +24,13 @@ const NewPost = () => {
     return <p>Loading...</p>;
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const title = e.target[0].value;
-    const summary = e.target[1].value;
-    const img = e.target[2].value;
-    const content = text.current;
-
-    try {
-      await fetch("/api/posts", {
-        method: "POST",
-        body: JSON.stringify({
-          title,
-          summary,
-          img,
-          content,
-          author: session.data.user.name,
-        }),
-      });
-      mutate();
-      e.target.reset()
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  
 
   function save(data) {
     text.current = data;
+  }
+
+  function getcontent() {
+    return text.current;
   }
 
   
@@ -64,10 +42,12 @@ const NewPost = () => {
             save={save}
           />
         </div>
-
-        <EditorSidebar 
-          rtl  
-          width="200px"/>
+        <div className={styles.postSettingsSidebar}>
+          <EditorSidebar 
+            getcontent = {getcontent}
+            rtl  
+            width="200px"/>
+          </div>
       </div>
     )
   }
