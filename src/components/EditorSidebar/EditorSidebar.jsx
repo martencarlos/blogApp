@@ -115,7 +115,7 @@ const EditorSidebar = (props) => {
               <input required type="text" placeholder="Title" className={styles.input} />
               <input required type="text" placeholder="summary" className={styles.input} />
               <input required type='file' onChange={onSelectFile} />
-                {selectedFile &&  <Image width={180} height={100} className={styles.imagePreview} alt="image preview"  src={preview} /> }
+                {selectedFile && preview  &&  <Image width={180} height={100} className={styles.imagePreview} alt="image preview"  src={preview} /> }
               <button className={styles.newPostButton}>Publish</button>
             </form>
           </SubMenu>

@@ -15,6 +15,10 @@ export const GET = async (request) => {
 
 export const POST = async (req) => {
  
+    
+
+  try {
+
     const f = await req.formData();
     const obj = Object.fromEntries(f);    
 
@@ -23,11 +27,13 @@ export const POST = async (req) => {
             const b = await v.arrayBuffer();
             const buff = Buffer.from(b);
 
-            fs.writeFileSync(`./public/${k}`, buff);
+            fs.writeFileSync(`./public/${k}.jpeg`, buff);
         }
     });
 
-  try {
+
+
+
     return new NextResponse("Image saved", { status: 201 });
   } catch (err) {
     console.log(err)
