@@ -43,7 +43,7 @@ function saveContent(data) {
 
 function loadContent() {
   const content = localStorage.getItem("draft");
-  
+  console.log(content)
   if (content) {
     return content;
   }
