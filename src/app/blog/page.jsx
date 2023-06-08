@@ -1,3 +1,4 @@
+
 import React from "react";
 import styles from "./page.module.css";
 import Link from "next/link";
@@ -6,10 +7,10 @@ import Date from "@/utils/date";
 
 async function getData() {
   const res = await fetch(process.env.SERVER+"/api/posts", 
-    { next: { revalidate: 10 } });
+    { next: { revalidate: 60*15 } });
 
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    throw new Error("Failed to retrieve data");
   }
 
   return res.json();

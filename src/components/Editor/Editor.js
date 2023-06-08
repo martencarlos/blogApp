@@ -23,41 +23,66 @@ import ListMaxIndentLevelPlugin from "./plugins/ListMaxIndentLevelPlugin";
 import CodeHighlightPlugin from "./plugins/CodeHighlightPlugin";
 import AutoLinkPlugin from "./plugins/AutoLinkPlugin";
 import {OnChangePlugin} from '@lexical/react/LexicalOnChangePlugin';
+import { useEffect, useRef } from "react";
 
 function Placeholder() {
-  return <div className="editor-placeholder">Enter some rich text...</div>;
+  return <div className="editor-placeholder">
+    <div className="editor-placeholder-title">
+      Title
+    </div>
+    <br/><br/>
+    <div className="editor-placeholder-text">
+      Tell your story...
+    </div>
+  </div>
 }
 
-const editorConfig = {
-  // The editor theme
-  theme: ExampleTheme,
-  // Handling of errors during update
-  onError(error) {
-    throw error;
-  },
-  // Any custom nodes go here
-  nodes: [
-    HeadingNode,
-    ListNode,
-    ListItemNode,
-    QuoteNode,
-    CodeNode,
-    CodeHighlightNode,
-    TableNode,
-    TableCellNode,
-    TableRowNode,
-    AutoLinkNode,
-    LinkNode
-  ]
-};
+function saveContent(data) {
+  localStorage.setItem("draft", data);
+} 
 
-function onChange(state) {
-  // console.log(state.toJSON());
+function loadContent() {
+  const content = localStorage.getItem("draft");
+  
+  if (content) {
+    return content;
+  }
+  return "";
 }
 
 
 
-export default function Editor(props) {
+export default  function Editor(props) {
+
+  const initialEditorState =  loadContent();
+  const editorStateRef = useRef();
+  
+ 
+  const editorConfig = {
+    // The editor theme
+    theme: ExampleTheme,
+    editorState: initialEditorState,
+    // Handling of errors during update
+    onError(error) {
+      throw error;
+    },
+    // Any custom nodes go here
+    nodes: [
+      HeadingNode,
+      ListNode,
+      ListItemNode,
+      QuoteNode,
+      CodeNode,
+      CodeHighlightNode,
+      TableNode,
+      TableCellNode,
+      TableRowNode,
+      AutoLinkNode,
+      LinkNode
+    ]
+  };
+  
+
   return (
     <LexicalComposer initialConfig={editorConfig}>
       <div className="editor-container">
@@ -73,7 +98,10 @@ export default function Editor(props) {
             ErrorBoundary={LexicalErrorBoundary}
           />
           <HistoryPlugin />
-          <OnChangePlugin onChange={onChange} />
+          <OnChangePlugin onChange={editorState => {
+            editorStateRef.current = editorState
+            saveContent(JSON.stringify(editorStateRef.current))
+          }} />
           <AutoFocusPlugin />
           <CodeHighlightPlugin />
           <ListPlugin />
@@ -83,6 +111,12 @@ export default function Editor(props) {
           <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
         </div>
       </div>
+      {/*<button label="Save" onPress={() => {
+        if (editorStateRef.current) {
+          saveContent(JSON.stringify(editorStateRef.current))
+        }
+      }} />*/}
     </LexicalComposer>
+    
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 import {useState, useContext} from "react";
-import styles from "./sidebar.module.css";
+import styles from "./editorSidebar.module.css";
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -16,11 +16,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Link from "next/link";
 import Loading from "@/components/Loading/Loading";
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import { Javascript } from "@mui/icons-material";
+
 import { ThemeContext } from "../../context/ThemeContext";
 
 
-const Dashboard = (props) => {
+const EditorSidebar = () => {
 
   const session = useSession()
   const router = useRouter();
@@ -38,13 +38,14 @@ const Dashboard = (props) => {
 
   if (session.status === "authenticated") {
     return (
-      <Sidebar width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>
+      <Sidebar className={styles.editorSidebar} width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>
         <Menu closeOnClick={false}>
           <MenuItem
-            className={styles.menuItem}
+            className={[styles.menuItem, styles.title].join(" ")}
             icon= <MenuIcon/> 
-            onClick={() => setCollapsed(!collapsed)}>  </MenuItem>
-          <MenuItem className={styles.menuItem} icon= <DashboardRoundedIcon/> component={<Link href="/dashboard/"/>}> Dashboard </MenuItem>
+            onClick={() => setCollapsed(!collapsed)}> Post settings </MenuItem>
+          <br/>
+          <MenuItem active className={styles.menuItem} icon= <DashboardRoundedIcon/> component={<Link href="/dashboard/"/>}> Dashboard </MenuItem>
           <MenuItem className={styles.menuItem} icon= <AddIcon/> component={<Link href="/dashboard/newPost"/>}> New Post </MenuItem>
           <SubMenu  className={styles.subMenu} icon= <SettingsIcon/>  label="Settings">
             <MenuItem className={styles.menuItem} icon= <ManageAccountsIcon/> component={<Link href="/dashboard/account"/>} > Account </MenuItem>
@@ -57,7 +58,15 @@ const Dashboard = (props) => {
   }
 };
 
-export default Dashboard;
+export default EditorSidebar;
+
+// <form className={styles.newPostForm} onSubmit={handleSubmit}>
+//           <h1>Post settings</h1>
+//           <input type="text" placeholder="Title" className={styles.input} />
+//           <input type="text" placeholder="summary" className={styles.input} />
+//           <input type="text" placeholder="Image" className={styles.input} />
+//           <button className={styles.newPostButton}>Publish</button>
+//         </form>
 
 // <div className={styles.wrapper}>
 //           <div className={styles.sidebar}>

@@ -7,9 +7,10 @@ import { useRouter } from "next/navigation";
 
 
 import Editor from "@/components/Editor/Editor";
+import EditorSidebar from "@/components/EditorSidebar/EditorSidebar";
  
 
-const Dashboard = () => {
+const NewPost = () => {
 
   const session = useSession()
   const router = useRouter();
@@ -58,25 +59,21 @@ const Dashboard = () => {
   if (session.status === "authenticated") {
     return (
       <div className={styles.newPostPage}>
-      
-        <Editor 
-          save={save}
-        />
+        <div className={styles.editorWrapper}>
+          <Editor 
+            save={save}
+          />
+        </div>
 
-        <form className={styles.newPostForm} onSubmit={handleSubmit}>
-          <h1>Post settings</h1>
-          <input type="text" placeholder="Title" className={styles.input} />
-          <input type="text" placeholder="summary" className={styles.input} />
-          <input type="text" placeholder="Image" className={styles.input} />
-          <button className={styles.newPostButton}>Publish</button>
-        </form>
-
+        <EditorSidebar 
+          rtl  
+          width="200px"/>
       </div>
     )
   }
 };
 
-export default Dashboard;
+export default NewPost;
 
 
 

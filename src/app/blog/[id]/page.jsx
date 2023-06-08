@@ -3,10 +3,11 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Date from "@/utils/date";
+import { getAllPosts } from "@/app/lib/getAllPosts";
 
 async function getData(id) {
   const res = await fetch(`${process.env.SERVER}/api/posts/${id}`,
-  { next: { revalidate: 10 } });
+  { next: { revalidate: 60 } });
 
   if (!res.ok) {
     return notFound()
@@ -72,6 +73,13 @@ const BlogPost = async ({ params }) => {
 };
 
 export default BlogPost;
- // <p className={styles.text}>
-        //  {data.content}
-        // </p>
+
+
+export async function generatestatiParams() {
+  const posts = await getAllPosts()
+
+  return posts.map((post) => ({
+      params: { id: post._id },
+    }))
+   
+}

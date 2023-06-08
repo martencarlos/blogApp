@@ -1,4 +1,11 @@
 
+@media screen and (max-width: 600px) {
+  .blogPost {
+    width: 90% !important;
+  }
+
+}
+
 
 .blogPostFullPage {
   display: flex;

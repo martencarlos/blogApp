@@ -1,5 +1,5 @@
 
-import Sidebar from '@/components/Sidebar/Sidebar';
+import ProfileSidebar from '@/components/ProfileSidebar/ProfileSidebar';
 import styles from './layout.module.css';
 
 export default function DashboardLayout({
@@ -8,8 +8,9 @@ export default function DashboardLayout({
 
   return (
     <div className={styles.dashboard}>
-      <Sidebar width="200px"/>
+      <ProfileSidebar ltr width="200px"/>
       {children}
+      
     </div>
   );
 }
