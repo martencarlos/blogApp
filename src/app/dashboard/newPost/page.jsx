@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
+import Loading from "@/components/Loading/Loading";
 
 import Editor from "@/components/Editor/Editor";
 import EditorSidebar from "@/components/EditorSidebar/EditorSidebar";
@@ -21,7 +21,7 @@ const NewPost = () => {
     router.push("/login");
   }
   if (session.status === "loading") {
-    return <p>Loading...</p>;
+    return <Loading/>;
   }
 
 
@@ -37,17 +37,19 @@ const NewPost = () => {
   if (session.status === "authenticated") {
     return (
       <div className={styles.newPostPage}>
+        
         <div className={styles.editorWrapper}>
           <Editor 
             save={save}
           />
         </div>
+
         <div className={styles.postSettingsSidebar}>
           <EditorSidebar 
             getcontent = {getcontent}
             rtl  
             width="200px"/>
-          </div>
+        </div>
       </div>
     )
   }

@@ -130,6 +130,8 @@ h1 {
 .editor-inner {
   background: #fff;
   position: relative;
+  height: 100%;
+  border-radius: 5px;
 }
 
 .editor-input {
@@ -430,8 +432,7 @@ pre::-webkit-scrollbar-thumb {
   margin-bottom: 1px;
   background: #fff;
   padding: 4px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-radius: 5px;
   vertical-align: middle;
 }
 

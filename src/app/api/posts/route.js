@@ -25,9 +25,10 @@ export const POST = async (req) => {
   const f = await req.formData();
   const obj = Object.fromEntries(f); 
   let postInfo = JSON.parse(obj.info)
+  const timestamp = Date.now()
   const imgExt = "."+obj.file.type.split("/").pop()
   const imgDir= "./public/"+postInfo.author+"/"
-  let imagePath= "./public/"+postInfo.author+"/"+postInfo.title+imgExt;
+  let imagePath= "./public/"+postInfo.author+"/"+"posts"+"/"+timestamp+"-"+postInfo.title+imgExt;
   const imgDBPath= "/"+postInfo.author+"/"+postInfo.title+imgExt;
   
   Object.entries(obj).forEach( async([k, v]) => {
