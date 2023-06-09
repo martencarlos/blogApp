@@ -58,8 +58,8 @@ const ProfileSidebar = () => {
             <MenuItem active className={styles.menuItem} icon= <DashboardRoundedIcon/> component={<Link href="/dashboard/"/>}> Dashboard </MenuItem>
             <MenuItem className={styles.menuItem} icon= <AddIcon/> component={<Link href="/dashboard/newPost"/>}> New Post </MenuItem>
             <SubMenu  className={styles.subMenu} icon= <SettingsIcon/>  label="Settings">
-              <MenuItem className={styles.menuItem} icon= <ManageAccountsIcon/> component={<Link href="/settings/account"/>} > Account </MenuItem>
-              <MenuItem className={styles.menuItem} icon= <ToggleOnIcon/>  component={<Link href="/settings/appSettings" />} > App settings </MenuItem>
+              <MenuItem className={styles.menuItem} icon= <ManageAccountsIcon/> component={<Link href="/dashboard/account"/>} > Account </MenuItem>
+              <MenuItem className={styles.menuItem} icon= <ToggleOnIcon/>  component={<Link href="/dashboard/appSettings" />} > App settings </MenuItem>
             </SubMenu>
           </Menu>
 
