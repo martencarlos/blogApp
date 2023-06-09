@@ -1,0 +1,15 @@
+
+
+@media screen and (max-width: 680px) {
+  .accountFullpage {
+    padding: 15px !important;
+  }
+
+  
+}
+
+.accountFullpage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

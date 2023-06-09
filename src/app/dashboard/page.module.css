@@ -45,10 +45,17 @@
 
 .title{
   color: var(--primary-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* max-width: 200px; */
   font-weight: 600;
 }
 
 .summary{
   color: var(--secondary-color);
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   /* font-size: small; */
 }
