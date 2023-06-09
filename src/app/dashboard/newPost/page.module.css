@@ -2,7 +2,7 @@
 
 @media screen and (max-width: 600px) {
   .newPostPage{
-    /* flex-direction: column; */
+    flex-direction: column;
     
   }
 
@@ -13,7 +13,7 @@
 .newPostPage{
   display: flex;
   justify-content: space-between;
-  
+  width: 100%;
   align-items: center;
   /* background-color: rgb(225, 225, 225); */
   flex:1;
@@ -75,4 +75,31 @@
 
 .newPostButton:hover{
   background-color: var(--primary-selected);
+}
+
+.toolbareditorwrapper{
+  display:flex;
+  width: 100%;
+  height: 100%;
+  gap: 10px;
+  
+}
+
+.toolbar{
+  display:flex;
+  padding: 0px 10px;
+  width: 100%;
+  justify-content: space-between;
+  background-color: var(--primary-color);
+  align-items: center;
+}
+
+.toolbarButton{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+  width: 38px;
+  height: 38px;
 }

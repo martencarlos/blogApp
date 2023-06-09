@@ -4,7 +4,7 @@ import {useState, useContext} from "react";
 import styles from "./profileSidebar.module.css";
 
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 
 import AddIcon from '@mui/icons-material/Add';
@@ -24,11 +24,18 @@ import { ThemeContext } from "../../context/ThemeContext";
 const ProfileSidebar = () => {
 
   const session = useSession()
-  const router = useRouter();
+  const {router} = useRouter();
 
+  const fullPath=usePathname().substring(1)
+  const relativePath=fullPath.slice(fullPath.indexOf("/") + 1)
+  var w = window.innerWidth; //<450 is mobile
+ 
+  
   const { mode } = useContext(ThemeContext);
 
   const [collapsed, setCollapsed] = useState(true);
+
+  
 
   if (session.status === "unauthenticated") {
     router.push("/login");
@@ -36,25 +43,28 @@ const ProfileSidebar = () => {
   if (session.status === "loading") {
     return <Loading/>
   }
-
+  
+  
   if (session.status === "authenticated") {
     return (
-      <Sidebar width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>
-        <Menu closeOnClick={false}>
-          <MenuItem
-            className={[styles.menuItem, styles.title].join(" ")}
-            icon= <MenuIcon/> 
-            onClick={() => setCollapsed(!collapsed)}> Profile </MenuItem>
-          <br/>
-          <MenuItem active className={styles.menuItem} icon= <DashboardRoundedIcon/> component={<Link href="/dashboard/"/>}> Dashboard </MenuItem>
-          <MenuItem className={styles.menuItem} icon= <AddIcon/> component={<Link href="/dashboard/newPost"/>}> New Post </MenuItem>
-          <SubMenu  className={styles.subMenu} icon= <SettingsIcon/>  label="Settings">
-            <MenuItem className={styles.menuItem} icon= <ManageAccountsIcon/> component={<Link href=""/>} > Account </MenuItem>
-            <MenuItem className={styles.menuItem} icon= <ToggleOnIcon/>  component={<Link href="" />} > App settings </MenuItem>
-          </SubMenu>
-        </Menu>
+      <div>  
+        { ((relativePath !== "newPost" && w<450) || w>450) && <Sidebar width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>
+          <Menu closeOnClick={false}>
+            <MenuItem
+              className={[styles.menuItem, styles.title].join(" ")}
+              icon= <MenuIcon/> 
+              onClick={() => setCollapsed(!collapsed)}> Profile </MenuItem>
+            <br/>
+            <MenuItem active className={styles.menuItem} icon= <DashboardRoundedIcon/> component={<Link href="/dashboard/"/>}> Dashboard </MenuItem>
+            <MenuItem className={styles.menuItem} icon= <AddIcon/> component={<Link href="/dashboard/newPost"/>}> New Post </MenuItem>
+            <SubMenu  className={styles.subMenu} icon= <SettingsIcon/>  label="Settings">
+              <MenuItem className={styles.menuItem} icon= <ManageAccountsIcon/> component={<Link href=""/>} > Account </MenuItem>
+              <MenuItem className={styles.menuItem} icon= <ToggleOnIcon/>  component={<Link href="" />} > App settings </MenuItem>
+            </SubMenu>
+          </Menu>
 
-      </Sidebar>
+        </Sidebar>}
+      </div>
     )
   }
 };

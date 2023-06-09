@@ -27,9 +27,9 @@ export const POST = async (req) => {
   let postInfo = JSON.parse(obj.info)
   const timestamp = Date.now()
   const imgExt = "."+obj.file.type.split("/").pop()
-  const imgDir= "./public/"+postInfo.author+"/"
-  let imagePath= "./public/"+postInfo.author+"/"+"posts"+"/"+timestamp+"-"+postInfo.title+imgExt;
-  const imgDBPath= "/"+postInfo.author+"/"+postInfo.title+imgExt;
+  const imgDir= "./public/"+postInfo.author+"/"+"/"+"posts"+"/"
+  let imagePath= "./public/"+postInfo.author+"/"+"posts"+"/"+postInfo.title+imgExt;
+  const imgDBPath= "/"+postInfo.author+"/"+"posts"+"/"+postInfo.title+imgExt;
   
   Object.entries(obj).forEach( async([k, v]) => {
       if( !!v.type ) { // If it's a file, values like image/png are passed over.

@@ -23,7 +23,8 @@ import ListMaxIndentLevelPlugin from "./plugins/ListMaxIndentLevelPlugin";
 import CodeHighlightPlugin from "./plugins/CodeHighlightPlugin";
 import AutoLinkPlugin from "./plugins/AutoLinkPlugin";
 import {OnChangePlugin} from '@lexical/react/LexicalOnChangePlugin';
-import { useEffect, useRef } from "react";
+import { use, useEffect, useRef } from "react";
+import { ConstructionOutlined } from "@mui/icons-material";
 
 function Placeholder() {
   return <div className="editor-placeholder">
@@ -47,7 +48,39 @@ function loadContent() {
   if (content!==null) {
     return content;
   }else{
-    const value = '{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}';
+    // const value = '{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}';
+    const value = `
+    {
+      "root": {
+          "children": [
+              {
+                  "children": [
+                      {
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "",
+                          "type": "text",
+                          "version": 1
+                      }
+                  ],
+                  "direction": null,
+                  "format": "",
+                  "indent": 0,
+                  "type": "heading",
+                  "version": 1,
+                  "tag": "h1"
+              }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+      }
+    }`
+  
     return value;
   }
   
@@ -62,6 +95,7 @@ export default  function Editor(props) {
  
   const editorConfig = {
     // The editor theme
+    
     theme: ExampleTheme,
     editorState: initialEditorState,
     // Handling of errors during update
@@ -99,9 +133,11 @@ export default  function Editor(props) {
             placeholder={<Placeholder />}
             ErrorBoundary={LexicalErrorBoundary}
           />
+         
           <HistoryPlugin />
           <OnChangePlugin onChange={editorState => {
             editorStateRef.current = editorState
+          
             saveContent(JSON.stringify(editorStateRef.current))
           }} />
           <AutoFocusPlugin />

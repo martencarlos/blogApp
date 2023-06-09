@@ -2,6 +2,7 @@
 @media screen and (max-width: 600px) {
   .editor-container {
     width: 100% !important;
+    padding: 0px 10px !important;
   }
 
 }
@@ -132,6 +133,7 @@ h1 {
   position: relative;
   height: 100%;
   border-radius: 5px;
+  margin-top: 50px;
 }
 
 .editor-input {
@@ -144,8 +146,9 @@ h1 {
   tab-size: 1;
   outline: 0;
   padding: 40px 10px;
-  caret-color: #444;
+  caret-color: #444; 
 }
+
 
 .editor-placeholder {
   color: #999;
