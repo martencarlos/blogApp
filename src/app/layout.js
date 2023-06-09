@@ -5,7 +5,6 @@ import Footer from "@/components/footer/Footer";
 import { ThemeProvider } from "@/context/ThemeContext";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {

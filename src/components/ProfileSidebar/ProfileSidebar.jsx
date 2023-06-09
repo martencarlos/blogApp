@@ -1,5 +1,4 @@
 "use client"
-
 import {useState, useContext} from "react";
 import styles from "./profileSidebar.module.css";
 
@@ -19,6 +18,7 @@ import Loading from "@/components/Loading/Loading";
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Javascript } from "@mui/icons-material";
 import { ThemeContext } from "../../context/ThemeContext";
+import { useWindowSize } from "../../app/hooks/windowSize";
 
 
 const ProfileSidebar = () => {
@@ -28,7 +28,7 @@ const ProfileSidebar = () => {
 
   const fullPath=usePathname().substring(1)
   const relativePath=fullPath.slice(fullPath.indexOf("/") + 1)
-  var w = window.innerWidth; //<450 is mobile
+  const size = useWindowSize();
  
   
   const { mode } = useContext(ThemeContext);
@@ -48,7 +48,7 @@ const ProfileSidebar = () => {
   if (session.status === "authenticated") {
     return (
       <div>  
-        { ((relativePath !== "newPost" && w<450) || w>450) && <Sidebar width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>
+        { ((relativePath !== "newPost" && size.width<450) || size.width>450) && <Sidebar width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>
           <Menu closeOnClick={false}>
             <MenuItem
               className={[styles.menuItem, styles.title].join(" ")}

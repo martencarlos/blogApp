@@ -10,7 +10,7 @@ import Editor from "@/components/Editor/Editor";
 import EditorSidebar from "@/components/EditorSidebar/EditorSidebar";
 import ViewSidebarIcon from '@mui/icons-material/ViewSidebar';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-
+import { useWindowSize } from "../../hooks/windowSize";
 
 const NewPost = () => {
 
@@ -20,9 +20,9 @@ const NewPost = () => {
 
   const [showPostSettingsSidebar, setShowPostSettingsSidebar] = useState(false);
 
-  var w = window.innerWidth; //<450 is mobile
-  
-  
+
+  const size = useWindowSize();
+   
   if (session.status === "unauthenticated") {
     router.push("/login");
   }
@@ -48,7 +48,7 @@ const NewPost = () => {
     return (
       <div className={styles.newPostPage}>
         {/*Mobile - Toolbar*/}
-        {w<450 &&
+        {size.width<450 &&
         <div className={styles.toolbar}>
         
           <div onClick={()=>{router.back()}} className={styles.toolbarButton}>
@@ -68,7 +68,7 @@ const NewPost = () => {
           </div>
           
           {/*Desktop or Mobile sidebarButton clicked - Post Settings sidebar*/}
-          {(showPostSettingsSidebar && w<450 || w>450) && <div className={styles.postSettingsSidebar}>
+          {(showPostSettingsSidebar && size.width<450 || size.width>450) && <div className={styles.postSettingsSidebar}>
             <EditorSidebar 
               getcontent = {getcontent}
               rtl  
