@@ -24,7 +24,7 @@ import { useWindowSize } from "../../app/hooks/windowSize";
 const ProfileSidebar = () => {
 
   const session = useSession()
-  const {router} = useRouter();
+  const router = useRouter();
 
   const fullPath=usePathname().substring(1)
   const relativePath=fullPath.slice(fullPath.indexOf("/") + 1)
