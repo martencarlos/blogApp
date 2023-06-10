@@ -1,3 +1,9 @@
+@media screen and (max-width: 768px) {
+  .post {
+    width: 90% !important;
+  }
+}
+
 
 .blogPage {
   display: flex;
@@ -10,6 +16,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 0px;
   margin: 50px 0px;
 }
@@ -34,17 +41,42 @@
   width: 100px;
 }
 
-.content {
+.info {
+  display:flex;
+  flex-direction: column;
 }
 
 .title{
-  margin-bottom: 10px;
+  all: unset;
+  margin-bottom: 5px;
+  width: 100%;
   color: inherit;
+  font-weight: 600;
+  white-space: pre-wrap;
+
+}
+
+.date{
+  color: var(--primary-color);
 }
 
 .summary{
   font-size: 18px;
   color: #999;
+  all: unset;
+  margin: 10px 0px;
+
+  font-size: large;
+  color: inherit;
+
+  padding: 0;
+  max-width: 170px;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .author{
