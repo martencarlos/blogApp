@@ -52,7 +52,7 @@ const Avatar = () => {
             <p>{session.data.user.name}</p>
             <div className={styles.iconButton}>
               <ManageAccountsRoundedIcon className={styles.icon}/>
-              <Link href={"/"}>Profile</Link>
+              <Link href={"/dashboard/account"}>Profile</Link>
             </div>
             <div className={styles.iconButton}>
               <LogoutRoundedIcon className={styles.icon}/>
