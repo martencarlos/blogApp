@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./loading.module.css";
 
 
-const Loading = () => {
+const Loading = (props) => {
   return (
-      <div className={styles.loading}>Loading...</div>
+      <div className={styles.loading}>{props.fallback? props.fallback:"Loading..."}</div>
   );
 };
 

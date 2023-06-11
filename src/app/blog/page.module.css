@@ -1,6 +1,10 @@
 @media screen and (max-width: 768px) {
   .post {
-    width: 90% !important;
+    /* width: 90% !important; */
+  }
+  .postsList{
+    width: 100% !important;
+    max-width: none !important;
   }
 }
 
@@ -17,15 +21,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 50%;
   gap: 0px;
-  margin: 50px 0px;
+  margin: 20px 0px;
 }
 
-.post {
+a.post {
+
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   gap: 30px;
 }
 
@@ -42,43 +48,34 @@
 }
 
 .info {
-  display:flex;
+  display: flex;
+
+
+  flex: 1;
   flex-direction: column;
 }
 
-.title{
-  all: unset;
+h1.title{
+ 
   margin-bottom: 5px;
   width: 100%;
+  font-size: large;
   color: inherit;
   font-weight: 600;
   white-space: pre-wrap;
 
 }
 
-.date{
+time.date{
   color: var(--primary-color);
 }
 
 .summary{
-  font-size: 18px;
-  color: #999;
-  all: unset;
-  margin: 10px 0px;
 
-  font-size: large;
-  color: inherit;
-
-  padding: 0;
-  max-width: 170px;
-  overflow: hidden;
-  position: relative;
-  display: inline-block;
-
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  margin:10px 0px
 }
 
-.author{
+p.author{
   
+  font-size: small;
 }

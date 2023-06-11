@@ -51,7 +51,7 @@ const NewPost = () => {
         {size.width<450 &&
         <div className={styles.toolbar}>
         
-          <div onClick={()=>{router.back()}} className={styles.toolbarButton}>
+          <div onClick={()=>{router.back()? router.back():router.push("/dashboard")}} className={styles.toolbarButton}>
             <ArrowBackIosNewIcon/>
           </div>
           <div onClick={togglePostSettingsSidebar} className={styles.toolbarButton}>

@@ -8,7 +8,7 @@ export default function DashboardLayout({
 
   return (
     <div className={styles.dashboard}>
-      <ProfileSidebar ltr width="200px"/>
+      <ProfileSidebar/>
       {children}
       
     </div>

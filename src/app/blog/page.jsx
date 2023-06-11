@@ -30,7 +30,7 @@ const Blog = async () => {
             <div className={styles.info}>
               <h1 className={styles.title}>{item.title}</h1>
               <Date css={{color:'var(--primary-color)'}} dateString={item.createdAt} />
-              <p className={styles.summary}>{item.summary}</p>
+              <div className={styles.summary}>{item.summary}</div>
               <p className={styles.author}>{item.author}</p>
             </div>
             

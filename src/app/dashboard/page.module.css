@@ -57,5 +57,5 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* font-size: small; */
+  font-size: medium;
 }
