@@ -4,7 +4,7 @@ import styles from "./profileSidebar.module.css";
 
 import { useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
-import Image from "next/image";
+
 
 import AddIcon from '@mui/icons-material/Add';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
@@ -16,7 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Link from "next/link";
 import Loading from "@/components/Loading/Loading";
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import { Javascript } from "@mui/icons-material";
+
 import { ThemeContext } from "../../context/ThemeContext";
 import { useWindowSize } from "../../app/hooks/windowSize";
 
@@ -32,10 +32,7 @@ const ProfileSidebar = () => {
  
   
   const { mode } = useContext(ThemeContext);
-
   const [collapsed, setCollapsed] = useState(true);
-
-  
 
   if (session.status === "unauthenticated") {
     router.push("/login");
