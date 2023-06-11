@@ -54,8 +54,8 @@
 
 .summary{
   color: var(--secondary-color);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* white-space: nowrap;
+  overflow: hidden; */
+  /* text-overflow: ellipsis; */
   font-size: medium;
 }

@@ -22,7 +22,7 @@ const Blog = async () => {
                 src={item.img}
                 alt=""
                 width={100}
-                height={100}
+                height={150}
                 className={styles.image}
               />
             </div>

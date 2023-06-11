@@ -29,5 +29,8 @@
     "react-image-file-resizer": "^0.4.8",
     "react-pro-sidebar": "^1.1.0-alpha.1",
     "swr": "^2.1.5"
+  },
+  "devDependencies": {
+    "encoding": "^0.1.13"
   }
 }

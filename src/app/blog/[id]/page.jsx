@@ -7,7 +7,7 @@ import Date from "@/utils/date";
 
 async function getData(id) {
   const res = await fetch(`${process.env.SERVER}/api/posts/${id}`,
-  { cache: "force-cache" });
+  { next: { revalidate: 30 } });
 
   if (!res.ok) {
     return notFound()

@@ -19,6 +19,7 @@ const NewPost = () => {
   const text= useRef("text")
 
   const [showPostSettingsSidebar, setShowPostSettingsSidebar] = useState(false);
+  const [clearEditor, setClearEditor] = useState(false);
 
 
   const size = useWindowSize();
@@ -36,11 +37,19 @@ const NewPost = () => {
 
 
   function save(data) {
+    if(clearEditor) 
+      setClearEditor(false);
+
     text.current = data;
+    
   }
 
   function getcontent() {
     return text.current;
+  }
+
+  function handleClearEditor() {
+    setClearEditor(true);
   }
 
   
@@ -64,6 +73,7 @@ const NewPost = () => {
           <div className={styles.editorWrapper}>
             <Editor 
               save={save}
+              clearEditor = {clearEditor}
             />
           </div>
           
@@ -71,6 +81,7 @@ const NewPost = () => {
           {(showPostSettingsSidebar && size.width<450 || size.width>450) && <div className={styles.postSettingsSidebar}>
             <EditorSidebar 
               getcontent = {getcontent}
+              handleClearEditor = {handleClearEditor}
               rtl
               collapsed= {showPostSettingsSidebar?(!showPostSettingsSidebar):true}
               width="200px"/>

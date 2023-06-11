@@ -1,9 +1,10 @@
 import React from 'react'
+import Loading from '@/components/Loading/Loading'
 
-function Loading() {
+function loading() {
   return (
-    <div>loading fallback contact</div>
+    <Loading fallback= "Loading"/>
   )
 }
 
-export default Loading
+export default loading

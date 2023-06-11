@@ -155,7 +155,7 @@ h1 {
   position: relative;
   tab-size: 1;
   outline: 0;
-  padding: 40px 10px;
+  padding: 10px;
   caret-color: #444; 
 }
 
@@ -316,6 +316,7 @@ h1 {
   font-size: 24px;
   color: rgb(5, 5, 5);
   font-weight: 400;
+  line-height: 1.5;
   margin: 0;
   margin-bottom: 12px;
   padding: 0;

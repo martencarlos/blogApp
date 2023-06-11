@@ -42,54 +42,56 @@ function saveContent(data) {
   localStorage.setItem("draft", data);
 } 
 
-function loadContent() {
-  const content = localStorage.getItem("draft");
-
-  if (content!==null) {
-    return content;
-  }else{
-    // const value = '{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}';
-    const value = `
-    {
-      "root": {
-          "children": [
-              {
-                  "children": [
-                      {
-                          "detail": 0,
-                          "format": 0,
-                          "mode": "normal",
-                          "style": "",
-                          "text": "",
-                          "type": "text",
-                          "version": 1
-                      }
-                  ],
-                  "direction": null,
-                  "format": "",
-                  "indent": 0,
-                  "type": "heading",
-                  "version": 1,
-                  "tag": "h1"
-              }
-          ],
-          "direction": null,
-          "format": "",
-          "indent": 0,
-          "type": "root",
-          "version": 1
-      }
-    }`
-  
-    return value;
-  }
-  
-}
-
-
 
 export default  function Editor(props) {
  
+  function loadContent() {
+    if(props.clearEditor) 
+      localStorage.removeItem("draft");
+    
+    const content = localStorage.getItem("draft");
+  
+    if (content!==null) {
+      return content;
+    }else{
+      // const value = '{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}';
+      const value = `
+      {
+        "root": {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": "",
+                            "type": "text",
+                            "version": 1
+                        }
+                    ],
+                    "direction": null,
+                    "format": "",
+                    "indent": 0,
+                    "type": "heading",
+                    "version": 1,
+                    "tag": "h1"
+                }
+            ],
+            "direction": null,
+            "format": "",
+            "indent": 0,
+            "type": "root",
+            "version": 1
+        }
+      }`
+    
+      return value;
+    }
+    
+  }
+
   const initialEditorState =  loadContent();
   const editorStateRef = useRef({});
  

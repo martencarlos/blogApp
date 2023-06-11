@@ -11,7 +11,7 @@ module.exports =  {
     '@mui/icons-material/?(((\\w*)?/?)*)': {
         transform: '@mui/icons-material/{{ matches.[1] }}/{{member}}'
     }
-},
+  },
 }
 
 // experimental: {

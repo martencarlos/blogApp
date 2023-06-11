@@ -58,7 +58,6 @@ const EditorSidebar = (props) => {
     // }
 
     //upload image
- 
       const info = JSON.stringify({
         title,
         summary,
@@ -66,8 +65,8 @@ const EditorSidebar = (props) => {
         content,
         author: session.data.user.name,
       })
-      var input = document.querySelector('input[type="file"]')
-      const image = input.files[0];
+      const imgInput = document.querySelector('input[type="file"]')
+      const image = imgInput.files[0];
       
       const body = new FormData();
       body.append("file", image);
@@ -78,8 +77,13 @@ const EditorSidebar = (props) => {
         body
       })
       mutate();
-      e.target.reset()
+
+      //clear form
      
+      setPreview(false)
+      e.target.reset()
+      props.handleClearEditor()
+      router.push("/dashboard")
   };
 
   // create a preview as a side effect, whenever selected file is changed
