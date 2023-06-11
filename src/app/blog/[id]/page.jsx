@@ -49,7 +49,6 @@ const BlogPost = async ({ params }) => {
               />
               <span className={styles.username}>{data.author}</span>
             </div>
-            
             <Date dateString = {data.createdAt} className={styles.date}/>
           </div>
         </div>

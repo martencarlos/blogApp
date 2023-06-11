@@ -71,7 +71,8 @@ const NewPost = () => {
           {(showPostSettingsSidebar && size.width<450 || size.width>450) && <div className={styles.postSettingsSidebar}>
             <EditorSidebar 
               getcontent = {getcontent}
-              rtl  
+              rtl
+              collapsed= {showPostSettingsSidebar?(!showPostSettingsSidebar):true}
               width="200px"/>
           </div>}
 

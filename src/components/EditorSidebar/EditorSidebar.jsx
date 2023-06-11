@@ -1,5 +1,5 @@
 "use client";
-import {useState, useContext, useEffect} from "react";
+import {useState, useContext, useEffect, use} from "react";
 import styles from "./editorSidebar.module.css";
 
 import { useSession } from "next-auth/react";
@@ -26,9 +26,11 @@ const EditorSidebar = (props) => {
   const { mutate } = useSWR()
 
   const { mode } = useContext(ThemeContext);
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(props.collapsed);
   const [selectedFile, setSelectedFile] = useState()
   const [preview, setPreview] = useState()
+
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,6 +95,7 @@ const EditorSidebar = (props) => {
     return () => URL.revokeObjectURL(objectUrl)
   }, [selectedFile])
 
+
   const onSelectFile = e => {
     if (!e.target.files || e.target.files.length === 0) {
         setSelectedFile(undefined)
@@ -109,6 +112,8 @@ const EditorSidebar = (props) => {
     return <Loading/>
   }
 
+ 
+
   if (session.status === "authenticated") {
     return (
       <Sidebar className={styles.editorSidebar} width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>
@@ -120,7 +125,7 @@ const EditorSidebar = (props) => {
             onClick={() => setCollapsed(!collapsed)}> Post settings </MenuItem>
           <br/>
           
-          <SubMenu  className={styles.subMenu} icon= <SettingsIcon/>  label="Settings">
+          <SubMenu className={styles.subMenu} icon= <SettingsIcon/>  label="Settings">
             <form  className={styles.newPostForm} onSubmit={handleSubmit} >
               <input required type="text" placeholder="Title" className={styles.input} />
               <input required type="text" placeholder="summary" className={styles.input} />
