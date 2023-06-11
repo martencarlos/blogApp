@@ -38,7 +38,7 @@ const ProfileSidebar = () => {
     router.push("/login");
   }
   if (session.status === "loading") {
-    return <Loading/>
+    return null
   }
   
   

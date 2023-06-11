@@ -132,7 +132,7 @@ const EditorSidebar = (props) => {
           <SubMenu className={styles.subMenu} icon= <SettingsIcon/>  label="Settings">
             <form  className={styles.newPostForm} onSubmit={handleSubmit} >
               <input required type="text" placeholder="Title" className={styles.input} />
-              <input required type="text" placeholder="summary" className={styles.input} />
+              <textarea required type="text" placeholder="summary" className={styles.textarea} />
               <input required type='file' onChange={onSelectFile} />
                 {selectedFile && preview  &&  <Image width={180} height={100} className={styles.imagePreview} alt="image preview"  src={preview} /> }
               <button className={styles.newPostButton}>Publish</button>

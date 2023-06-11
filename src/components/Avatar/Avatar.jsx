@@ -30,8 +30,9 @@ const Avatar = () => {
 
   function closeProfileMenu(e) {
     const profileMenu = document.getElementById("profileMenu")
+    const avatar = document.getElementById("avatar")
     
-    if(e.target.id !== "profileMenu" && profileMenu.style.display === "block") {
+    if(e.target.id !== "profileMenu" && e.target.id !== "avatar" && profileMenu.style.display === "block") {
       var elms = document.querySelectorAll("[id='profileMenu']");
 
       for(var i = 0; i < elms.length; i++) {
@@ -60,7 +61,6 @@ const Avatar = () => {
     var elms = document.querySelectorAll("[id='profileMenu']");
     
     for(var i = 0; i < elms.length; i++) {
-     
       if(elms[i].style.display === "none" || elms[i].style.display === "") {
         elms[i].style.display = "block"
       } else {

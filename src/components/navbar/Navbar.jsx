@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect,useContext } from "react";
+import React, { useEffect,useContext, useRef } from "react";
 import styles from "./navbar.module.css";
 import Avatar from "../Avatar/Avatar";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
@@ -48,19 +48,38 @@ const Navbar = () => {
   const session = useSession();
 
   const { mode } = useContext(ThemeContext);
+  const profileMenuDisplay = useRef(null);
 
   // NavMenu click outside handler
   useEffect(() => {
     function handleClickOutside(event) {
-      const navMenu = document.getElementById("navMenu")
+      
       const profileMenu = document.getElementById("profileMenu")
+      const navMenu = document.getElementById("navMenu")
+      if (profileMenu.style.display === "block")
+        profileMenuDisplay.current = profileMenu.style.display;
+
+     console.log(event.target)
       setTimeout(() => {
-        if (typeof event.target.className.includes !== 'undefined' && !event.target.className.includes("avatar") && event.target.tagName !== "path" && event.target.tagName !== "svg") {
-        if(navMenu.style.display === "flex" && profileMenu.style.display !== "none") {
-          navMenu.style.display = "none"
+    
+        if(navMenu.style.display === "flex"){
+          if(event.target.tagName==="A")
+           navMenu.style.display = "none"
+          // if(profileMenuDisplay.current !== "block" && event.target.className != "profileMenu")
+          //   navMenu.style.display = "none"
+          if(typeof event.target.className.includes !== 'undefined' && profileMenuDisplay.current !== "block" && !(event.target.className.indexOf("navbar") >= 0))
+            navMenu.style.display = "none"
+          if(profileMenuDisplay.current === "block") 
+            profileMenuDisplay.current = "null";
         }
-       
-      }
+
+        // if(navMenu.style.display === "flex" &&  profileMenuDisplay.current !== "block" || event.target.tagName==="a") {
+        //   if (typeof event.target.className.includes !== 'undefined' &&  !(event.target.className.indexOf("navbar") >= 0) && !event.target.className.includes("avatar") && event.target.tagName !== "path" && event.target.tagName !== "svg") {
+        //     navMenu.style.display = "none"
+        //   }
+        // }else if(profileMenuDisplay.current === "block") 
+        //   profileMenuDisplay.current = "null";
+        
       }, 100);
     }
     document.addEventListener("click", handleClickOutside);

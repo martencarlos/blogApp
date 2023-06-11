@@ -40,6 +40,12 @@
   z-index: 2;
 }
 
+.link:hover{
+  transform: scale(1.02);
+  transition: transform 0.2s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
 .logo {
   font-weight: bold;
   font-size: 22px;

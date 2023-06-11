@@ -443,7 +443,7 @@ pre::-webkit-scrollbar-thumb {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 1px;
+  margin: auto;
   background: #fff;
   padding: 4px;
   border-radius: 5px;

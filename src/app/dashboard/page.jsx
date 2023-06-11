@@ -9,6 +9,7 @@ import Image from "next/image";
 
 import Link from "next/link";
 import Loading from "@/components/Loading/Loading";
+import Date from "@/utils/date";
  
 const fetcher = url => fetch(url).then(res => res.json())
 
@@ -46,11 +47,11 @@ const Dashboard = () => {
           : data.map((post) => (
             <Link  href={`/blog/${post._id}`} id={post._id} className={styles.postListItem} key={post._id}>
               <div className={styles.imgContainer}>
-                  <Image className={styles.image} src={post.img} alt="" width={200} height={100} />
+                  <Image className={styles.image} src={post.img} alt="" width={200} height={150} />
               </div>
               <h1 id={post._id} className={styles.title}>{post.title}</h1>
-              <h2 id={post._id} className={styles.summary}>{post.summary}</h2>
-              <p id={post._id} className={styles.author}>{post.author}</p>
+              <Date id={post._id} css={{color: "var(--secondary-color)", fontSize:"medium"}} dateString={post.createdAt} />
+              <p id={post._id} className={styles.summary}>{post.summary}</p>
             </Link>
             ))}
       </div>

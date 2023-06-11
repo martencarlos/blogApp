@@ -15,6 +15,17 @@
   width: 100%;
 }
 
+.textarea{
+  padding: 5px;
+  color: inherit;
+  background-color: transparent;
+  resize: vertical;
+  min-height: 60px;
+  border: 1px solid #bebebe;
+
+  width: 100%;
+}
+
 .imagePreview{
   display: flex;
   justify-content: center;
