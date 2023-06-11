@@ -53,19 +53,20 @@ const Navbar = () => {
   useEffect(() => {
     function handleClickOutside(event) {
       const navMenu = document.getElementById("navMenu")
+      const profileMenu = document.getElementById("profileMenu")
       setTimeout(() => {
         if (typeof event.target.className.includes !== 'undefined' && !event.target.className.includes("avatar") && event.target.tagName !== "path" && event.target.tagName !== "svg") {
-        if(navMenu.style.display === "flex") {
+        if(navMenu.style.display === "flex" && profileMenu.style.display !== "none") {
           navMenu.style.display = "none"
         }
        
       }
       }, 100);
     }
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, []);
 

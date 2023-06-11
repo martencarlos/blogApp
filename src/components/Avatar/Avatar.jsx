@@ -18,24 +18,49 @@ const Avatar = () => {
   const session = useSession()
   const { mode} = useContext(ThemeContext);
 
-    // Dark mode profileMenu
-    useEffect(() => {
-      const profileMenu = document.getElementById("profileMenu");
-  
-      if (navMenu && mode === "dark") {
-        profileMenu.classList.add(styles.profileMenuDark);
-      } else if (navMenu && mode === "light"){
-        profileMenu.classList.remove(styles.profileMenuDark);
+  //close hamburguer menu if clicked outside the menu
+  useEffect(() => {
+   const website = document.getElementById("website");
+   website.addEventListener("click", closeProfileMenu);
+
+    return () => {
+      website.removeEventListener('click', closeProfileMenu);
+    }
+  }, [])
+
+  function closeProfileMenu(e) {
+    const profileMenu = document.getElementById("profileMenu")
+    
+    if(e.target.id !== "profileMenu" && profileMenu.style.display === "block") {
+      var elms = document.querySelectorAll("[id='profileMenu']");
+
+      for(var i = 0; i < elms.length; i++) {
+        if(elms[i].style.display === "block") {
+          elms[i].style.display = "none"
+        }
       }
-  
-    }, [mode]);
+    }
+  }
+    
+
+  // Dark mode profileMenu
+  useEffect(() => {
+    const profileMenu = document.getElementById("profileMenu");
+
+    if (navMenu && mode === "dark") {
+      profileMenu.classList.add(styles.profileMenuDark);
+    } else if (navMenu && mode === "light"){
+      profileMenu.classList.remove(styles.profileMenuDark);
+    }
+
+  }, [mode]);
   
   function showProfileMenu() {
     // const profileMenuStyle = window.getComputedStyle(document.getElementById("profileMenu"))
     var elms = document.querySelectorAll("[id='profileMenu']");
     
     for(var i = 0; i < elms.length; i++) {
-      console.log(elms[i].style.display)
+     
       if(elms[i].style.display === "none" || elms[i].style.display === "") {
         elms[i].style.display = "block"
       } else {
@@ -44,8 +69,9 @@ const Avatar = () => {
     }
   }
 
+
   return (
-    <div onClick={showProfileMenu} className={styles.avatar}>
+    <div id= "avatar" onClick={showProfileMenu} className={styles.avatar}>
         
       {session.status === "authenticated" ?
           <div id='profileMenu' className={styles.profileMenu}>
