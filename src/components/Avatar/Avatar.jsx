@@ -31,7 +31,7 @@ const Avatar = () => {
   function closeProfileMenu(e) {
     const profileMenu = document.getElementById("profileMenu")
     const avatar = document.getElementById("avatar")
-    console.log(e.target.tagName === "A")
+
     if((e.target.id !== "profileMenu" && e.target.id !== "avatar" && profileMenu.style.display === "block") || (e.target.tagName === "A")) {
       var elms = document.querySelectorAll("[id='profileMenu']");
       setTimeout(() => {

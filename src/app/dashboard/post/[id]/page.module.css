@@ -1,0 +1,70 @@
+
+@media screen and (max-width: 600px) {
+  .blogPost {
+    width: 90% !important;
+  }
+
+}
+
+
+.blogPostFullPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+}
+
+.blogPost{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 30px 15px;
+  gap: 40px;
+}
+
+.info {
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.title{
+  font-size: 40px;
+  color: inherit;
+}
+
+.subTitle{
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+
+.image {
+  display: flex;
+  width: 100%;
+  height:auto;
+}
+
+.content {
+  text-align: justify;
+}
