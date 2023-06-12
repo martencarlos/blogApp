@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 
 import Button from "@/components/Button/Button";
@@ -18,10 +18,15 @@ const AppSettings = () => {
   // if (session.status === "loading") {
   //   return <Loading/>;
   // }
+  const [text, setText] = useState("")
+
+  useEffect(() => {
+  
+  }, [])
 
   return (
     <div className={styles.accountFullpage}>
-      App Settings
+      {"App settings"}
     </div>
   );
 };

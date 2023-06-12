@@ -5,8 +5,10 @@ import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
+import { CheckListPlugin } from "@lexical/react/LexicalCheckListPlugin";
+
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import TreeViewPlugin from "./plugins/TreeViewPlugin";
+// import TreeViewPlugin from "./plugins/TreeViewPlugin";
 import ToolbarPlugin from "./plugins/ToolbarPlugin";
 import HtmlPlugin from "./plugins/HtmlPlugin";
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
@@ -23,20 +25,19 @@ import ListMaxIndentLevelPlugin from "./plugins/ListMaxIndentLevelPlugin";
 import CodeHighlightPlugin from "./plugins/CodeHighlightPlugin";
 import AutoLinkPlugin from "./plugins/AutoLinkPlugin";
 import {OnChangePlugin} from '@lexical/react/LexicalOnChangePlugin';
-import { use, useEffect, useRef } from "react";
-import { ConstructionOutlined } from "@mui/icons-material";
+import { useRef } from "react";
 
-function Placeholder() {
-  return <div className="editor-placeholder">
-    <div className="editor-placeholder-title">
-      Title
-    </div>
-    <br/><br/>
-    <div className="editor-placeholder-text">
-      Tell your story...
-    </div>
-  </div>
-}
+// function Placeholder() {
+//   return <div className="editor-placeholder">
+//     <div className="editor-placeholder-title">
+//       Title
+//     </div>
+//     <br/><br/>
+//     <div className="editor-placeholder-text">
+//       Tell your story...
+//     </div>
+//   </div>
+// }
 
 function saveContent(data) {
   localStorage.setItem("draft", data);
@@ -132,7 +133,7 @@ export default  function Editor(props) {
           />
           <RichTextPlugin
             contentEditable={<ContentEditable className="editor-input" />}
-            placeholder={<Placeholder />}
+            // placeholder={<Placeholder />}
             ErrorBoundary={LexicalErrorBoundary}
           />
          
@@ -145,6 +146,7 @@ export default  function Editor(props) {
           <AutoFocusPlugin />
           <CodeHighlightPlugin />
           <ListPlugin />
+          <CheckListPlugin />
           <LinkPlugin />
           <AutoLinkPlugin />
           <ListMaxIndentLevelPlugin maxDepth={7} />
