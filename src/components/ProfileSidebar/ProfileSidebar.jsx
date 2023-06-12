@@ -23,8 +23,8 @@ import { useWindowSize } from "../../app/hooks/windowSize";
 
 const ProfileSidebar = () => {
 
-  const session = useSession()
-  const router = useRouter();
+  // const session = useSession()
+  // const router = useRouter();
 
   const fullPath=usePathname().substring(1)
   const relativePath=fullPath.slice(fullPath.indexOf("/") + 1)
@@ -34,15 +34,15 @@ const ProfileSidebar = () => {
   const { mode } = useContext(ThemeContext);
   const [collapsed, setCollapsed] = useState(true);
 
-  if (session.status === "unauthenticated") {
-    router.push("/login");
-  }
-  if (session.status === "loading") {
-    return null
-  }
+  // if (session.status === "unauthenticated") {
+  //   router.push("/login");
+  // }
+  // if (session.status === "loading") {
+  //   return null
+  // }
   
   
-  if (session.status === "authenticated") {
+  // if (session.status === "authenticated") {
     return (
       <div>  
         { ((relativePath !== "newPost" && size.width<450) || size.width>450) && <Sidebar  width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>
@@ -64,7 +64,7 @@ const ProfileSidebar = () => {
       </div>
     )
   }
-};
+// };
 
 export default ProfileSidebar;
 

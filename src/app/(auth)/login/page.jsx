@@ -1,9 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { getProviders, signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Loading from "@/components/Loading/Loading";
 
 const Login = ({ url }) => {
   const session = useSession();
@@ -17,11 +18,11 @@ const Login = ({ url }) => {
     setSuccess(params.get("success"));
   }, [params]);
 
-  if (session.status === "loading") {
-    return <div className={styles.loading}>Loading...</div>;
-  }else if (session.status === "authenticated") {
-    router?.push("/dashboard");
-  }
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      router.push("/dashboard");
+    }
+  } , [router,session.status])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +36,7 @@ const Login = ({ url }) => {
   };
 
   return (
+    session.status === "loading" ? <Loading/> :
     session.status === "unauthenticated" &&     
     <div className={styles.loginPage}>
       <h1 className={styles.title}>{success ? success : "Welcome Back"}</h1>
@@ -46,8 +48,6 @@ const Login = ({ url }) => {
           <button className={styles.loginButton}>Login</button>
           {error && error}
         </form>
-
-      
       <button
         onClick={() => {
           signIn("google");

@@ -1,10 +1,10 @@
 "use client";
 
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import Link from "next/link";
@@ -27,19 +27,19 @@ const handleDelete = async (id) => {
 const Dashboard = () => {
 
   const session = useSession()
-  const router = useRouter();
+  // const router = useRouter();
   
   //NEW WAY TO FETCH DATA
   const { data, mutate, error, isLoading }  = useSWR(session.data ? `/api/posts?username=${session.data.user.name}` : null, fetcher)
 
-  if (session.status === "unauthenticated") {
-    router.push("/login");
-  }
-  if (session.status === "loading") {
-    return <Loading/>;
-  }
+  // if (session.status === "unauthenticated") {
+  //   router.push("/login");
+  // }
+  // if (session.status === "loading") {
+  //   return <Loading/>;
+  // }
   
-  if (session.status === "authenticated") {
+  // if (session.status === "authenticated") {
     return (
       
       <div className={styles.posts}>
@@ -57,7 +57,7 @@ const Dashboard = () => {
       </div>
     )
   }
-};
+// };
 
 export default Dashboard;
 

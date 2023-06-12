@@ -59,7 +59,7 @@ const Navbar = () => {
       if (profileMenu.style.display === "block")
         profileMenuDisplay.current = profileMenu.style.display;
 
-     console.log(event.target)
+     
       setTimeout(() => {
     
         if(navMenu.style.display === "flex"){
