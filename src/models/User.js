@@ -14,9 +14,11 @@ const userSchema = new Schema(
       unique: true,
       required: true,
     },
+    avatar: {
+      type: String,
+    },
     password: {
       type: String,
-      required: true,
     },
   },
   { timestamps: true }

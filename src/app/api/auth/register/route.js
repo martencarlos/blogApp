@@ -13,8 +13,10 @@ export const POST = async (request) => {
   const newUser = new User({
     name,
     email,
+    avatar: "/default.png",
     password: hashedPassword,
   });
+  // https://i.pravatar.cc/
 
   try {
     await newUser.save();

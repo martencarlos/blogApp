@@ -42,7 +42,59 @@ const handler = NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
+    
   ],
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async signIn({ user, account }) {
+      if (account.provider === "google") {
+        const { name, email, image } = user;
+        let sessionUser = null;
+         //Check if the user exists.
+         await dbConnect();
+
+         try {
+           const DBUser = await User.findOne({
+             email: email,
+           });
+ 
+           if (DBUser) {
+            console.log("DBUSER")
+             sessionUser = DBUser;
+             
+            } else {
+              const newUser = new User({
+                name: name,
+                email: email,
+                avatar: image,
+              });
+              await newUser.save();
+              sessionUser = await User.findOne({
+                email: email,
+              });
+            }
+         } catch (err) {
+           throw new Error(err);
+         }
+         return sessionUser;
+
+      }else
+        return true;
+    },
+    
+    async session({ session }) {
+      await dbConnect();
+
+      const user = await User.findOne({
+        email: session.user.email,
+      });
+       
+      session.user = user;
+    
+  
+      return session;
+    },
+  },
   pages: {
     error: "/login",
   },
