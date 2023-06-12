@@ -1,27 +1,31 @@
 "use client"
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 
-import Button from "@/components/Button/Button";
-// import { useSession } from "next-auth/react";
-// import Loading from "@/components/Loading/Loading";
-// import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 const Account = () => {
 
-  // const session = useSession()
-  // const router = useRouter();
-
-  // if (session.status === "unauthenticated") {
-  //   router.push("/login");
-  // }
-  // if (session.status === "loading") {
-  //   return <Loading/>;
-  // }
+  const session =  useSession()
+  useEffect(() => {
+    console.log(session.data.user)
+  }, [session])
 
   return (
-    <div className={styles.accountFullpage}>
-      Account
+     <div className={styles.accountFullpage}>
+      <div className={styles.accountInfo}>
+
+        <p>{session.data.user.name}</p>
+        <p>{session.data.user.email}</p>
+        <Image 
+          src={session.data.user.avatar} 
+          alt="profile" 
+          width="100" 
+          height="100" 
+        />  
+      </div>
+
     </div>
   );
 };

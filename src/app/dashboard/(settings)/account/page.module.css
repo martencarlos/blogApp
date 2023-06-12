@@ -14,3 +14,9 @@
   align-items: center;
   width: 100%;
 }
+
+.accountInfo{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
