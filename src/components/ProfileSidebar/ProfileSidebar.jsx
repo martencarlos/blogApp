@@ -43,9 +43,10 @@ const ProfileSidebar = () => {
   
   
   // if (session.status === "authenticated") {
+    console.log("relativePath", relativePath)
     return (
       <div>  
-        { ((relativePath !== "newPost" && size.width<450) || size.width>450) && <Sidebar  width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>
+        { ((relativePath !== "newPost" && relativePath.length !== 29 && size.width<450) || size.width>450) && <Sidebar  width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>
           <Menu closeOnClick>
             <MenuItem
               className={[styles.menuItem, styles.title].join(" ")}
