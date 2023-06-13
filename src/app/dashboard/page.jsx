@@ -13,16 +13,7 @@ import Date from "@/utils/date";
  
 const fetcher = url => fetch(url).then(res => res.json())
 
-const handleDelete = async (id) => {
-  try {
-    await fetch(`/api/posts/${id}`, {
-      method: "DELETE",
-    });
-    mutate();
-  } catch (err) {
-    console.log(err);
-  }
-};
+
 
 const Dashboard = () => {
 

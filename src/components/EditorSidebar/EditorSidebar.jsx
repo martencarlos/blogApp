@@ -15,10 +15,6 @@ import { ThemeContext } from "../../context/ThemeContext";
 import useSWR from "swr";
 
 
-
-
-
-
 const EditorSidebar = (props) => {
 
   const session = useSession()
@@ -27,19 +23,38 @@ const EditorSidebar = (props) => {
 
   const { mode } = useContext(ThemeContext);
   const [collapsed, setCollapsed] = useState(props.collapsed);
+  const [data, setData] = useState();
   const [selectedFile, setSelectedFile] = useState()
   const [preview, setPreview] = useState()
 
-  
+  // create a preview as a side effect, whenever selected file is changed
+  useEffect(() => {
+    if (!selectedFile) {
+        setPreview(undefined)
+        return
+    }
+    const objectUrl = URL.createObjectURL(selectedFile)
+    setPreview(objectUrl)
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl)
+  }, [selectedFile])
+
+useEffect(() => {
+  if (props.data) {
+    setData(props.data);
+  }
+}, [props.data]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const id = data?data._id:undefined;
     const title = e.target[0].value;
     const summary = e.target[1].value;
-    const img = "/default.png" //e.target[2].value;
+    const img = preview?"/default.png":data.img //e.target[2].value;
     const content = props.getcontent();
-    const content_lexical = localStorage.getItem("draft");
+    const content_lexical = data?localStorage.getItem("editable_draft"):localStorage.getItem("draft");
   
     // try {
     //   await fetch("/api/posts", {
@@ -60,6 +75,7 @@ const EditorSidebar = (props) => {
 
     //upload image
       const info = JSON.stringify({
+        id,
         title,
         summary,
         img,
@@ -88,19 +104,17 @@ const EditorSidebar = (props) => {
       router.push("/dashboard")
   };
 
-  // create a preview as a side effect, whenever selected file is changed
-  useEffect(() => {
-    if (!selectedFile) {
-        setPreview(undefined)
-        return
+  const handleDelete = async (id) => {
+    try {
+      await fetch(`/api/posts/${id}`, {
+        method: "DELETE",
+      });
+      mutate();
+    } catch (err) {
+      console.log(err);
     }
-    const objectUrl = URL.createObjectURL(selectedFile)
-    setPreview(objectUrl)
-
-    // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl)
-  }, [selectedFile])
-
+    router.push("/dashboard")
+  };
 
   const onSelectFile = e => {
     if (!e.target.files || e.target.files.length === 0) {
@@ -118,9 +132,8 @@ const EditorSidebar = (props) => {
     return <Loading/>
   }
 
- 
-
   if (session.status === "authenticated") {
+   
     return (
       <Sidebar className={styles.editorSidebar} width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>
         <Menu closeOnClick={false}>
@@ -133,12 +146,18 @@ const EditorSidebar = (props) => {
           
           <SubMenu className={styles.subMenu} icon= <SettingsIcon/>  label="Settings">
             <form  className={styles.newPostForm} onSubmit={handleSubmit} >
-              <input required type="text" placeholder="Title" className={styles.input} />
-              <textarea required type="text" placeholder="summary" className={styles.textarea} />
-              <input required type='file' onChange={onSelectFile} />
-                {selectedFile && preview  &&  <Image width={180} height={100} className={styles.imagePreview} alt="image preview"  src={preview} /> }
-              <button className={styles.newPostButton}>Publish</button>
+              <input defaultValue={data?data.title:""} required type="text" placeholder="Title" className={styles.input}/>
+              <textarea defaultValue={data?data.summary:""} required type="text" placeholder="summary" className={styles.textarea} />
+              <input required={data?false:true} type='file' onChange={onSelectFile} />
+                {selectedFile && preview  && <Image width={180} height={100} className={styles.imagePreview} alt="image preview"  src={preview} /> }
+                {!selectedFile && data && <Image width={180} height={100} className={styles.imagePreview} alt="image preview"  src={data.img} /> }
+
+                <button className={styles.newPostButton}>{data?"update":"Publish"}</button>
             </form>
+            <div className={styles.deleteButtonContainer}>
+              {data && <button onClick={()=>{handleDelete(data._id)}} className={styles.deletePostButton}>{"delete"}</button>}
+            </div>
+            
           </SubMenu>
         </Menu>
 

@@ -28,27 +28,63 @@ export const POST = async (req) => {
   const f = await req.formData();
   const obj = Object.fromEntries(f); 
   let postInfo = JSON.parse(obj.info)
-  const blob = await obj.file.arrayBuffer()
-
-  // utils
-  const timestamp = Date.now()
-  const imgExt = "."+obj.file.type.split("/").pop()
+  let _id= ""
+  if(postInfo.id){
+    _id = postInfo.id
+  }
+  delete postInfo.id
 
   try {
     await dbConnect();
-    // Initialize clour storage for the image and db for the info and path to the image
-    const storage = getStorage(app);
-    // Create a storage reference from our storage service
-    const imagesRef = ref(storage, postInfo.author+"/"+"posts"+"/"+timestamp+"-"+postInfo.title+imgExt);
-    
-    uploadBytes(imagesRef, blob).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((downloadURL) => {
-        postInfo.img = downloadURL;
-        const newPost = new Post(postInfo);
-        newPost.save();
-      });
-    });
 
+    if(postInfo.img === "/default.png"){
+      // utils
+      const timestamp = Date.now()
+      const imgExt = "."+obj.file.type.split("/").pop()
+
+      const blob = await obj.file.arrayBuffer()
+       // Initialize clour storage for the image and db for the info and path to the image
+      const storage = getStorage(app);
+      // Create a storage reference from our storage service
+      const imagesRef = ref(storage, postInfo.author+"/"+"posts"+"/"+timestamp+"-"+postInfo.title+imgExt);
+      
+      uploadBytes(imagesRef, blob).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+          postInfo.img = downloadURL;
+
+          if(_id !== ""){
+            // const newPost = new Post(postInfo)
+            var conditions = {
+              _id : _id 
+              }
+            // Post.findOneAndUpdate
+             Post.findOneAndUpdate(conditions, postInfo).then((err, res) => {
+              if (err) {
+                console.log(err);
+              }else
+                console.log(res);
+             })
+           }else{
+          const newPost = new Post(postInfo);
+          newPost.save();}
+        });
+      });
+    }else{
+      // const newPost = new Post(postInfo)
+      var conditions = {
+        _id : _id 
+        }
+      // Post.findOneAndUpdate
+       Post.findOneAndUpdate(conditions, postInfo).then((err, res) => {
+        if (err) {
+          console.log(err);
+        }else
+          console.log(res);
+       })
+    }
+
+   
+   
     return new NextResponse("Post has been created", { status: 201 });
   } catch (err) {
     return new NextResponse("Database Error", { status: 500 });

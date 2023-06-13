@@ -21,14 +21,13 @@ async function getData(id) {
   return res.json();
 }
 
-function save(data) {
-  console.log(data);
-}
+
 
 const EditPost =  ({ params }) => {
   
   const size = useWindowSize();
   const router = useRouter();
+  const editorHTMLContent = useRef(null);
 
   const [showPostSettingsSidebar, setShowPostSettingsSidebar] = useState(false);
   const [data, setData] = useState(null);
@@ -41,15 +40,22 @@ const EditPost =  ({ params }) => {
     runAsync();
   }, [params]);
 
-
+  function save(data) {
+    editorHTMLContent.current = data;
+  }
 
   function togglePostSettingsSidebar() {
     setShowPostSettingsSidebar(!showPostSettingsSidebar);
   }
 
   function getcontent() {
-    return "";
+    return editorHTMLContent.current;
   }
+  function handleClearEditor() {
+    
+  }
+
+  
   
   return (
     <div className={styles.editPostPage}>
@@ -79,7 +85,8 @@ const EditPost =  ({ params }) => {
           {(showPostSettingsSidebar && size.width<450 || size.width>450) && <div className={styles.postSettingsSidebar}>
             <EditorSidebar 
               getcontent = {getcontent}
-              handleClearEditor = {false}
+              handleClearEditor = {handleClearEditor}
+              data = {data}
               rtl
               collapsed= {showPostSettingsSidebar?(!showPostSettingsSidebar):true}
               width="200px"/>

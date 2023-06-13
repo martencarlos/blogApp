@@ -37,3 +37,24 @@
   border-radius: 5px;
   overflow: hidden;
 }
+
+.deleteButtonContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.deletePostButton{
+  width: 100%;
+  padding: 5px;
+  /* margin: 0px 10px; */
+  overflow: hidden;
+  /* box-sizing: content-box; */
+  border: 1px solid #bebebe;
+  border-radius: 5px;
+  background-color: #cf4a4a;
+  color: #fafafa;
+  font-weight: 600;
+  cursor: pointer;
+}
