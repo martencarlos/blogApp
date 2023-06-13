@@ -38,6 +38,8 @@
 
 .link{
   z-index: 2;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .link:hover{

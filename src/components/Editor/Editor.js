@@ -39,18 +39,27 @@ import { useRef } from "react";
 //   </div>
 // }
 
-function saveContent(data) {
-  localStorage.setItem("draft", data);
-} 
+
 
 
 export default  function Editor(props) {
  
+  function saveContent(data) {
+    if(props.editContent)
+      localStorage.setItem("editable_draft", data)
+    else
+      localStorage.setItem("draft", data);
+  } 
+
   function loadContent() {
+    let content;
     if(props.clearEditor) 
       localStorage.removeItem("draft");
     
-    const content = localStorage.getItem("draft");
+    if(props.editContent)
+       content = props.editContent;
+    else
+       content = localStorage.getItem("draft");
   
     if (content!==null) {
       return content;

@@ -1,76 +1,93 @@
-import React from "react";
-import styles from "./page.module.css";
-import Image from "next/image";
-import { notFound } from "next/navigation";
-import Date from "@/utils/date";
+"use client";
 
+
+import styles from "./page.module.css";
+// import React from "react";
+import Editor from "@/components/Editor/Editor";
+import EditorSidebar from "@/components/EditorSidebar/EditorSidebar";
+import { useWindowSize } from "@/app/hooks/windowSize";
+import ViewSidebarIcon from '@mui/icons-material/ViewSidebar';
+import { useRouter } from "next/navigation";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { useEffect, useRef, useState } from "react";
 
 async function getData(id) {
-  const res = await fetch(`${process.env.SERVER}/api/posts/${id}`,
-  { next: { revalidate: 10 } });
-
+  const res = await fetch(`/api/posts/${id}`);
+  
   if (!res.ok) {
-    return notFound()
+    return "notFound()";
   }
 
   return res.json();
 }
 
-
-export async function generateMetadata({ params }) {
-
-  const post = await getData(params.id)
-  
-  return {
-    title: post.title,
-    description: post.summary,
-  };
+function save(data) {
+  console.log(data);
 }
 
-const BlogPost = async ({ params }) => {
-  const data = await getData(params.id);
-  return (
-    <div className={styles.blogPostFullPage}>
-      <div className={styles.blogPost}>
-        
-        <div className={styles.info}>
-          <h1 className={styles.title}>{data.title}</h1>
-          <p className={styles.subTitle}>
-            {data.summary}
-          </p>
-          <div className={styles.row}>
-            <div className={styles.author}>
-              <Image
-                src={data.img}
-                alt=""
-                width={40}
-                height={40}
-                className={styles.avatar}
-              />
-              <span className={styles.username}>{data.author}</span>
-            </div>
-            <Date dateString = {data.createdAt} className={styles.date}/>
-          </div>
-        </div>
+const EditPost =  ({ params }) => {
+  
+  const size = useWindowSize();
+  const router = useRouter();
 
+  const [showPostSettingsSidebar, setShowPostSettingsSidebar] = useState(false);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    async function runAsync() {
+      const postData = await getData(params.id);
+      setData(postData);
+    }
+    runAsync();
+  }, [params]);
+
+
+
+  function togglePostSettingsSidebar() {
+    setShowPostSettingsSidebar(!showPostSettingsSidebar);
+  }
+
+  function getcontent() {
+    return "";
+  }
+  
+  return (
+    <div className={styles.editPostPage}>
+        {/*Mobile - Toolbar*/}
+        {size.width<450 &&
+        <div className={styles.toolbar}>
         
-        <Image
-          src={data.img}
-          alt=""
-          height={800}
-          width={1000}
-          className={styles.image}
-        />
-      
-      
-        <div className={styles.content}>
-          <div dangerouslySetInnerHTML={{__html: data.content}} />
+          <div onClick={()=>{router.back()? router.back():router.push("/dashboard")}} className={styles.toolbarButton}>
+            <ArrowBackIosNewIcon/>
+          </div>
+          <div onClick={togglePostSettingsSidebar} className={styles.toolbarButton}>
+            <ViewSidebarIcon />
+          </div>
+        </div>}
+        
+        <div className={styles.toolbareditorwrapper}>
+
+          <div className={styles.editorWrapper}>
+          {data && <Editor 
+              save={save}
+              clearEditor = {false}
+              editContent = {data.content_lexical}
+            />}
+          </div>
+          
+          {/*Desktop or Mobile sidebarButton clicked - Post Settings sidebar*/}
+          {(showPostSettingsSidebar && size.width<450 || size.width>450) && <div className={styles.postSettingsSidebar}>
+            <EditorSidebar 
+              getcontent = {getcontent}
+              handleClearEditor = {false}
+              rtl
+              collapsed= {showPostSettingsSidebar?(!showPostSettingsSidebar):true}
+              width="200px"/>
+          </div>}
+
         </div>
       </div>
-    </div>
   );
 };
 
-export default BlogPost;
-
-
+export default EditPost;

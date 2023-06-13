@@ -20,6 +20,10 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
+    content_lexical: {
+      type: String,
+      required: true,
+    },
     author: {
       type: String,
       required: true,

@@ -39,6 +39,7 @@ const EditorSidebar = (props) => {
     const summary = e.target[1].value;
     const img = "/default.png" //e.target[2].value;
     const content = props.getcontent();
+    const content_lexical = localStorage.getItem("draft");
   
     // try {
     //   await fetch("/api/posts", {
@@ -63,6 +64,7 @@ const EditorSidebar = (props) => {
         summary,
         img,
         content,
+        content_lexical,
         author: session.data.user.name,
       })
       const imgInput = document.querySelector('input[type="file"]')

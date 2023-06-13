@@ -1,9 +1,9 @@
 "use client";
 import React, { use, useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
-import useSWR from "swr";
+
 // import { useSession } from "next-auth/react";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 // import Loading from "@/components/Loading/Loading";
 
 import Editor from "@/components/Editor/Editor";
@@ -15,7 +15,7 @@ import { useWindowSize } from "../../hooks/windowSize";
 const NewPost = () => {
 
   // const session = useSession()
-  // const router = useRouter();
+  const router = useRouter();
   const text= useRef("text")
 
   const [showPostSettingsSidebar, setShowPostSettingsSidebar] = useState(false);
