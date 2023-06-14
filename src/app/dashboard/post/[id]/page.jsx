@@ -88,7 +88,7 @@ const EditPost =  ({ params }) => {
               handleClearEditor = {handleClearEditor}
               data = {data}
               rtl
-              collapsed= {showPostSettingsSidebar?(!showPostSettingsSidebar):true}
+              collapsed= {showPostSettingsSidebar?(!showPostSettingsSidebar):false}
               width="200px"/>
           </div>}
 

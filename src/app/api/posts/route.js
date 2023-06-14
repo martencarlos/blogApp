@@ -7,14 +7,19 @@ import { getStorage, ref, uploadBytes, getDownloadURL   } from "firebase/storage
 
 export const GET = async (request) => {
 
-  const url = new URL(request.url);
-  const username = url.searchParams.get("username");
 
+  const url = new URL(request.url);
+  const id = url.searchParams.get("author");
+  
   try {
 
     await dbConnect();
-
-    const posts = await Post.find(username && { username });
+    let posts =[]
+    
+    if(id)
+     posts = await Post.find({author: id});
+     else
+      posts = await Post.find({});
     
     return new NextResponse(JSON.stringify(posts), { status: 200 });
   } catch (err) {
@@ -61,8 +66,8 @@ export const POST = async (req) => {
              Post.findOneAndUpdate(conditions, postInfo).then((err, res) => {
               if (err) {
                 console.log(err);
-              }else
-                console.log(res);
+              }else{}
+            
              })
            }else{
           const newPost = new Post(postInfo);
@@ -78,8 +83,8 @@ export const POST = async (req) => {
        Post.findOneAndUpdate(conditions, postInfo).then((err, res) => {
         if (err) {
           console.log(err);
-        }else
-          console.log(res);
+        }else{}
+          
        })
     }
 

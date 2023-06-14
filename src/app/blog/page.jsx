@@ -1,14 +1,18 @@
-import React from "react";
+
 import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import Date from "@/utils/date";
 import { getAllPosts } from "@/app/lib/getAllPosts";
 
+
 const Blog = async () => {
+
   const data = await getAllPosts();
-  console.log(data);
-  console.log(data);
+  const authors = data.map((item) => item.author);
+  const uniqueAuthors = [...new Set(authors)];
+  
+  console.log(uniqueAuthors);
 
   return (
     <div className={styles.blogPage}>

@@ -1,25 +1,34 @@
+
+.avatarContainer{
+  display: flex;
+}
+
+
+
 .avatar{
   /* This image is 687 wide by 1024 tall, similar to your aspect ratio */
-  background-image: url("/default.png");
+  /* background-image: url("/default.png"); */
   cursor: pointer;
   width: 30px;
   height: 30px;
 
   
-  background-size: cover;
+  /* background-size: cover; */
 
   /* center the image vertically and horizontally */
-  background-position: top center;
+  /* background-position: top center; */
 
   /* round the edges to a circle with border radius 1/2 container size */
   border-radius: 50%;
   position: relative;
 }
 
+
+
 .profileMenu{
   display: none;
   width: 160px;
-  top: 40px;
+  top: 60px;
   position: absolute;
   
   margin-left: -60px;

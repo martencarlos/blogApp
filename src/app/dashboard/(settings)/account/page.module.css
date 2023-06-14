@@ -20,3 +20,32 @@
   flex-direction: column;
   gap: 20px;
 }
+
+.imageIconContainer{
+  display:flex;
+  width: fit-content;
+  position:relative;
+}
+
+.avatar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.changeImageIcon{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  right: 0;
+
+  width: 30px;
+  border: 1px solid lightgrey;
+  height: 30px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}

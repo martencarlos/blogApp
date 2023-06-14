@@ -45,6 +45,20 @@
   padding: 0px 10px;
 }
 
+.newOrUpdatePostButton{
+  width: 100%;
+  padding: 5px;
+  /* margin: 0px 10px; */
+  overflow: hidden;
+  /* box-sizing: content-box; */
+  border: 1px solid #bebebe;
+  border-radius: 5px;
+  background-color: #40945c;
+  color: #fafafa;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .deletePostButton{
   width: 100%;
   padding: 5px;

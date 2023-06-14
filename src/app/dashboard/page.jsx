@@ -13,15 +13,13 @@ import Date from "@/utils/date";
  
 const fetcher = url => fetch(url).then(res => res.json())
 
-
-
 const Dashboard = () => {
 
   const session = useSession()
   // const router = useRouter();
   
   //NEW WAY TO FETCH DATA
-  const { data, mutate, error, isLoading }  = useSWR(session.data ? `/api/posts?username=${session.data.user.name}` : null, fetcher)
+  const { data, mutate, error, isLoading }  = useSWR(session.data ? `/api/posts?author=${session.data.user._id}` : null, fetcher)
 
   // if (session.status === "unauthenticated") {
   //   router.push("/login");
