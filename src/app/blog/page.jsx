@@ -6,18 +6,31 @@ import Date from "@/utils/date";
 import { getAllPosts } from "@/app/lib/getAllPosts";
 
 
+
+
+
 const Blog = async () => {
 
   const data = await getAllPosts();
-  const authors = data.map((item) => item.author);
-  const uniqueAuthors = [...new Set(authors)];
+  const postAuthors = data.map((item) => item.author);
+  const uniqueAuthors = [...new Set(postAuthors)];
   
-  console.log(uniqueAuthors);
+  const string = JSON.stringify(uniqueAuthors)
+  const users = await fetch(process.env.SERVER+'/api/user?users='+JSON.stringify(uniqueAuthors),{
+    method: 'GET',
+   
+  })
+  // const res = await axios.post(process.env.SERVER+'/api/user',string)
+
+  
+
+  // const authors = await res.json();
+ 
 
   return (
     <div className={styles.blogPage}>
       <div className={styles.postsList}>
-        {data.map((item) => (
+        {data && data.map((item) => (
           <Link
             href={`/blog/${item._id}`}
             className={styles.post}
@@ -60,3 +73,5 @@ const Blog = async () => {
 };
 
 export default Blog;
+
+

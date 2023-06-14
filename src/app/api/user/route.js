@@ -4,17 +4,6 @@ import User from "../../../models/User";
 import { app } from "../../lib/firebase";
 import { getStorage, ref, uploadBytes, getDownloadURL   } from "firebase/storage";
 
-export const GET = async (req) => {
-
-  console.log(req.query)
-};
-
-export const POST =   async (request) => {
-  console.log("POSTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
-  const body =   request.body
-  console.log(body)
-  return new NextResponse("Avatar image updated", { status: 201 });
-}
 
 export const PUT = async (req) => {
   //retrive image and info from the request
