@@ -82,7 +82,7 @@ const EditPost =  ({ params }) => {
           </div>
           
           {/*Desktop or Mobile sidebarButton clicked - Post Settings sidebar*/}
-          {(showPostSettingsSidebar && size.width<450 || size.width>450) && <div className={styles.postSettingsSidebar}>
+          {data && (showPostSettingsSidebar && size.width<450 || size.width>450) && <div className={styles.postSettingsSidebar}>
             <EditorSidebar 
               getcontent = {getcontent}
               handleClearEditor = {handleClearEditor}

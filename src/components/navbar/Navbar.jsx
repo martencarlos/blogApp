@@ -118,7 +118,7 @@ const Navbar = () => {
 
       <div className={styles.right}>
           <Avatar/>
-          <DarkModeToggle />
+          <DarkModeToggle fontSize="large" />
       </div>
 
       {/* Menu button - hidden  */}

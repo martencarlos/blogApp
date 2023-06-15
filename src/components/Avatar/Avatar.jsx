@@ -76,19 +76,16 @@ const Avatar = () => {
 
   return (
     <div id="avatarContainer" className={styles.avatarContainer}>
-      
-        {session.data && (
-          <Image
-            alt="profile"
-            src={session.data.user.avatar}
-            width={30}
-            height={30}
-            id="avatar"
-            onClick={showProfileMenu}
-            className={styles.avatar}
-          />
-        )}
-        
+      <Image
+        alt="profile"
+        src={session.data ? session.data.user.avatar : "/default.png"}
+        width={40}
+        height={40}
+        id="avatar"
+        onClick={showProfileMenu}
+        className={styles.avatar}
+      />
+
       {session.status === "authenticated" ? (
         <div id="profileMenu" className={styles.profileMenu}>
           <p>{session.data.user.name}</p>
