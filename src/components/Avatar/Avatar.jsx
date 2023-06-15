@@ -79,8 +79,8 @@ const Avatar = () => {
       <Image
         alt="profile"
         src={session.data ? session.data.user.avatar : "/default.png"}
-        width={40}
-        height={40}
+        width={35}
+        height={35}
         id="avatar"
         onClick={showProfileMenu}
         className={styles.avatar}

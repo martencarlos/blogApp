@@ -27,9 +27,20 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const BlogPost = async ({ params }) => {
+// export const dynamic= 'force-dynamic' // force dynamic page using other than fetch. = force-cache Eg. axios
+// export const revalidate= 10 // force dynamic page using other than fetch. = next: {revalidate: 10} Eg. axios
+// this page being a nexted [id] page, it will be dynamicaally rendered to make it static at build time use the following:
+// export async function generateStaticParams() {
+//   const posts = [{id: 1,name: hello}, {id: 2}, {id: 3}]
+//   return posts.map((post) => {
+//     return { id: post.id }
+//   });
+// }
+
+
+const BlogPost = async ({ params, searchParams }) => {
   const data = await getData(params.id);
-  
+  console.log(searchParams) // ?foo=bar
   const promise = await fetch(process.env.SERVER+'/api/user/'+JSON.stringify(data.author),{
     method: 'GET',
   })

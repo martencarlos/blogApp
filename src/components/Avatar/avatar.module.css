@@ -1,12 +1,13 @@
 
 .avatarContainer{
   display: flex;
+  position: relative;
 }
 
 .avatar{
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   object-fit: cover;
   border-radius: 50%;
   position: relative;
@@ -15,7 +16,7 @@
 .profileMenu{
   display: none;
   width: 160px;
-  top: 60px;
+  top: 45px;
   position: absolute;
   
   margin-left: -60px;
