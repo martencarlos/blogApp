@@ -133,7 +133,7 @@ useEffect(() => {
   }
 
   if (session.status === "authenticated") {
-   console.log(data?true:false)
+   
     return (
       <Sidebar className={styles.editorSidebar} width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>
         <Menu closeOnClick={false}>
@@ -148,7 +148,7 @@ useEffect(() => {
             <form  className={styles.newPostForm} onSubmit={handleSubmit} >
               <input defaultValue={data?data.title:""} required type="text" placeholder="Title" className={styles.input}/>
               <textarea defaultValue={data?data.summary:""} required type="text" placeholder="summary" className={styles.textarea} />
-              <input value={data?"":undefined} required={data?false:true} type='file' onChange={onSelectFile} />
+              <input  required={data?false:true} type='file' onChange={onSelectFile} />
                 {selectedFile && preview  && <Image width={180} height={100} className={styles.imagePreview} alt="image preview"  src={preview} /> }
                 {!selectedFile && data && <Image width={180} height={100} className={styles.imagePreview} alt="image preview"  src={data.img} /> }
 

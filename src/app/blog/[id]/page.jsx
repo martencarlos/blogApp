@@ -29,6 +29,14 @@ export async function generateMetadata({ params }) {
 
 const BlogPost = async ({ params }) => {
   const data = await getData(params.id);
+  
+  const promise = await fetch(process.env.SERVER+'/api/user/'+JSON.stringify(data.author),{
+    method: 'GET',
+  })
+  const author = await promise.json();
+  // const value = await authors
+ console.log(author )
+
   return (
     <div className={styles.blogPostFullPage}>
       <div className={styles.blogPost}>
@@ -41,13 +49,13 @@ const BlogPost = async ({ params }) => {
           <div className={styles.row}>
             <div className={styles.author}>
               <Image
-                src={data.img}
+                src={author[0].avatar}
                 alt=""
                 width={40}
                 height={40}
                 className={styles.avatar}
               />
-              <span className={styles.username}>{data.author}</span>
+              <span className={styles.username}>{author[0].name}</span>
             </div>
             <Date dateString = {data.createdAt} className={styles.date}/>
           </div>

@@ -43,7 +43,7 @@ const ProfileSidebar = () => {
   
   
   // if (session.status === "authenticated") {
-    console.log("relativePath", relativePath)
+   
     return (
       <div>  
         { ((relativePath !== "newPost" && relativePath.length !== 29 && size.width<450) || size.width>450) && <Sidebar  width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>

@@ -5,25 +5,22 @@ import Image from "next/image";
 import Date from "@/utils/date";
 import { getAllPosts } from "@/app/lib/getAllPosts";
 
-
-
-
-
 const Blog = async () => {
 
   const data = await getAllPosts();
   const postAuthors = data.map((item) => item.author);
   const uniqueAuthors = [...new Set(postAuthors)];
   
-  const string = JSON.stringify(uniqueAuthors)
-  const users = await fetch(process.env.SERVER+'/api/user?users='+JSON.stringify(uniqueAuthors),{
+  const promise = await fetch(process.env.SERVER+'/api/user/'+JSON.stringify(uniqueAuthors),{
     method: 'GET',
-   
   })
-  // const res = await axios.post(process.env.SERVER+'/api/user',string)
-
+  const authors = await promise.json();
+  // const value = await authors
+  console.log(authors)
+  // .then( res => res.json())
+  // .then( data => console.log( data));
+ 
   
-
   // const authors = await res.json();
  
 
@@ -56,13 +53,13 @@ const Blog = async () => {
 
               <div className={styles.author}>
                 <Image
-                  src={item.img}
+                  src={authors.find(x => x._id === item.author).avatar}
                   alt=""
                   width={20}
                   height={20}
                   className={styles.avatar}
                 />
-                <span className={styles.username}>{item.author}</span>
+                <span className={styles.username}>{authors.find(x => x._id === item.author).name}</span>
               </div>
             </div>
           </Link>
