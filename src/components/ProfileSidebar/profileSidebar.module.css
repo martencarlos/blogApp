@@ -20,17 +20,14 @@
 
 
 .menuItem:hover a{
-  background-color: var(--primary-color) !important;
-  color: white !important;
+   background-color: #d1d1d1 !important;
+  /* color: white !important;  */
 } 
 .menuItem a{
   background-color: inherit !important;
 } 
 
-.subMenu:first-child{
-  background-color: pink !important;
-  color: white !important;
-}
+
 
 .menuItem.title{
   font-weight: 600;

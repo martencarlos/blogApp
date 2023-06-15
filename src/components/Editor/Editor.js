@@ -157,6 +157,7 @@ export default  function Editor(props) {
           <ListPlugin />
           <CheckListPlugin />
           <LinkPlugin />
+        
           <AutoLinkPlugin />
           <ListMaxIndentLevelPlugin maxDepth={7} />
           <MarkdownShortcutPlugin transformers={TRANSFORMERS} />

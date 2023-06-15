@@ -22,6 +22,10 @@
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
+
+  --light: #f3f3f3;
+  --dark: rgb(30, 30, 30);
+
   --primary-color: #91ba9b;
   --primary-selected: #689e6f;
   
@@ -60,12 +64,12 @@ a {
 }
 
 .light{
-  background-color: white;
-  color: #111;
+  background-color: var(--light);
+  color: var(--dark)
 }
 
 .dark{
-  background-color: black;
+  background-color: var(--dark);
   color: #bbb;
 }
 

@@ -46,7 +46,7 @@ const ProfileSidebar = () => {
    
     return (
       <div>  
-        { ((relativePath !== "newPost" && relativePath.length !== 29 && size.width<450) || size.width>450) && <Sidebar  width="210px" backgroundColor={mode=== "light" ? "white" : "black"} collapsed={collapsed}>
+        { ((relativePath !== "newPost" && relativePath.length !== 29 && size.width<450) || size.width>450) && <Sidebar  width="210px" backgroundColor={mode=== "light" ? "white" : "rgb(30, 30, 30)"} collapsed={collapsed}>
           <Menu closeOnClick>
             <MenuItem
               className={[styles.menuItem, styles.title].join(" ")}
