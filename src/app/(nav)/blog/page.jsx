@@ -10,13 +10,18 @@ const Blog = async () => {
   const data = await getAllPosts();
   const postAuthors = data.map((item) => item.author);
   const uniqueAuthors = [...new Set(postAuthors)];
-  
-  const promise = await fetch(process.env.SERVER+'/api/user/'+JSON.stringify(uniqueAuthors),{
+  let authors = []
+ await fetch(process.env.SERVER+'/api/user/'+JSON.stringify(uniqueAuthors),{
     method: 'GET',
-  })
-  const authors = await promise.json();
+  }).then( res => res.json())
+  .then( data => {
+     authors = data
+  });
+ 
+ 
+  
   // const value = await authors
-  console.log(authors)
+ 
   // .then( res => res.json())
   // .then( data => console.log( data));
  
