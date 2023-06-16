@@ -1,9 +1,18 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "../../lib/dbConnect";
 import Post from "@/models/Post";
 import fs from 'fs'
 import { app } from "../../lib/firebase";
 import { getStorage, ref, uploadBytes, getDownloadURL   } from "firebase/storage";
+
+// works as well
+// export async function GET(req){
+// const {searchParams} = new URL(req.url)
+// const id = searchParams.get("author")
+// return new Response (JSON.stringify({name:"john"}), {status: 200})
+// }
+
+
 
 export const GET = async (request) => {
 
