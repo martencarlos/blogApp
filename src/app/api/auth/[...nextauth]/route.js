@@ -59,7 +59,7 @@ const handler = NextAuth({
            });
  
            if (DBUser) {
-            console.log("DBUSER")
+            
              sessionUser = DBUser;
              
             } else {

@@ -14,7 +14,7 @@ const Account = () => {
   }, [session]);
 
   const changeAvatar = () => {
-    console.log("change avatar");
+
     var input = document.createElement('input');
     document.body.appendChild(input); //required for iphone
     input.addEventListener('change', updateValue); //required for iphone
