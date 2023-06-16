@@ -22,7 +22,8 @@ const Blog = async () => {
   
   try{
     console.log(res)
-    authors =  res.json();
+    authors =  await res.json();
+    console.log(authors)
     console.log(authors.length)
   } catch(err){
     console.log("ERROR in client side")
