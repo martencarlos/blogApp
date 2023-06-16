@@ -9,5 +9,5 @@ export const getAllPosts = async () => {
   throw new Error("Failed to retrieve data");
   }
 
-  return res.json();
+  return await res.json();
 };

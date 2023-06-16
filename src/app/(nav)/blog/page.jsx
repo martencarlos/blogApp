@@ -8,17 +8,18 @@ import { getAllPosts } from "@/app/lib/getAllPosts";
 const Blog = async () => {
 
   const data = await getAllPosts();
+
+
   const postAuthors = data.map((item) => item.author);
   const uniqueAuthors = [...new Set(postAuthors)];
   let authors = []
- await fetch(process.env.SERVER+'/api/user/'+JSON.stringify(uniqueAuthors),{
+  await fetch(process.env.SERVER+'/api/user/'+JSON.stringify(uniqueAuthors),{
     method: 'GET',
   }).then( res => res.json())
   .then( data => {
      authors = data
   });
- 
- 
+
   
   // const value = await authors
  
@@ -30,7 +31,7 @@ const Blog = async () => {
  
 
   return (
-    <div className={styles.blogPage}>
+    authors &&<div className={styles.blogPage}>
       <div className={styles.postsList}>
         {data && data.map((item) => (
           <Link
