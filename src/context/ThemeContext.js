@@ -11,7 +11,7 @@ export const ThemeProvider = ({ children }) => {
 
   // const localStorageTheme = typeof window !== 'undefined' ? localStorage.getItem("theme") : "light"
 
-  const [mode, setMode] = useState();
+  const [mode, setMode] = useState('light');
     
   useEffect(() => {
       if (typeof window !== 'undefined'){

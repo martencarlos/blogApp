@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
 // import Loading from "@/components/Loading/Loading";
 
-import Editor from "@/components/Editor/Editor";
+import Editor from "@/components/EditorJS/Editor";
 import EditorSidebar from "@/components/EditorSidebar/EditorSidebar";
 import ViewSidebarIcon from '@mui/icons-material/ViewSidebar';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
