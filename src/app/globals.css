@@ -52,6 +52,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   min-height: 100dvh;
+  overflow-y: hidden;
 }
 
 a {

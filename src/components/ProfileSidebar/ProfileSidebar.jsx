@@ -54,7 +54,7 @@ const ProfileSidebar = () => {
               onClick={() => setCollapsed(!collapsed)}> Profile </MenuItem>
             <br/>
             <MenuItem active className={styles.menuItem} icon= <DashboardRoundedIcon/> component={<Link href="/dashboard/"/>}> Dashboard </MenuItem>
-            <MenuItem className={styles.menuItem} icon= <AddIcon/> component={<Link href="/editorpage"/>}> New Post </MenuItem>
+            <MenuItem className={styles.menuItem} icon= <AddIcon/> component={<Link href="/dashboard/newPost"/>}> New Post </MenuItem>
             <SubMenu  className={styles.subMenu} icon= <SettingsIcon/>  label="Settings">
               <MenuItem className={styles.menuItem} icon= <ManageAccountsIcon/> component={<Link href="/dashboard/account"/>} > Account </MenuItem>
               <MenuItem className={styles.menuItem} icon= <ToggleOnIcon/>  component={<Link href="/dashboard/appSettings" />} > App settings </MenuItem>
