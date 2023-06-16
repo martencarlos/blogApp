@@ -6,11 +6,11 @@ export const GET = async (request, { params }) => {
   console.log("GET query with params");
 
   const { id } = params;
-  const array = JSON.parse(id);
-
+  // const array = JSON.parse(id);
+  console.log(id)
   try {
     await dbConnect();
-    const followedUsers = await User.find({ _id: { $in: array } });
+    const followedUsers = await User.find({ _id: { $in: id } });
 
     return new NextResponse(JSON.stringify(followedUsers), { status: 200 });
   } catch (err) {
