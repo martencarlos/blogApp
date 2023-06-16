@@ -18,8 +18,12 @@ const Blog = async () => {
     body: JSON.stringify(uniqueAuthors)
   })
 
+  console.log("RETUUUUUURN")
+  console.log(res)
+
   const authors = await res.json();
-  console.log(authors)
+  
+  console.log(authors.length)
 
   
   // const value = await authors
@@ -32,7 +36,7 @@ const Blog = async () => {
  
 
   return (
-    authors &&<div className={styles.blogPage}>
+    authors.length!==0 &&<div className={styles.blogPage}>
       <div className={styles.postsList}>
         {data && data.map((item) => (
           <Link
