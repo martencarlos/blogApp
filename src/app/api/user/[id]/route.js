@@ -5,14 +5,16 @@ import User from "@/models/User";
 export const POST = async (request, { params }) => {
   console.log("GET query with params");
 
-  const array =  await request.json();
+
   // const array = JSON.parse(id);
 
   try {
     await dbConnect();
+    const array =  await request.json();
     const followedUsers = await User.find({ _id: { $in: array } });
+    const responseJson= JSON.stringify(followedUsers);
 
-    return new NextResponse(JSON.stringify(followedUsers), { status: 200 });
+    return new NextResponse(responseJson), { status: 200 };
   } catch (err) {
     return new NextResponse("Database Error", { status: 500 });
   }

@@ -11,19 +11,25 @@ const Blog = async () => {
 
   const postAuthors = data.map((item) => item.author);
   const uniqueAuthors = [...new Set(postAuthors)];
- 
-
+  let authors=[]
+  try{
   const res = await fetch(process.env.SERVER+'/api/user/1',{
     method: 'POST',
     body: JSON.stringify(uniqueAuthors)
   })
 
   console.log("RETUUUUUURN")
-  console.log(res)
-
-  const authors = await res.json();
   
-  console.log(authors.length)
+  
+    console.log(res)
+     authors = await res.json();
+    console.log(authors.length)
+  } catch(err){
+    console.log("ERROR in client side")
+    console.log(err)
+  }
+
+  
 
   
   // const value = await authors
