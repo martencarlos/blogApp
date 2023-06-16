@@ -10,7 +10,7 @@ import Editor from "@/components/EditorJS/Editor";
 import EditorSidebar from "@/components/EditorSidebar/EditorSidebar";
 import ViewSidebarIcon from '@mui/icons-material/ViewSidebar';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { useWindowSize } from "../../hooks/windowSize";
+import { useWindowSize } from "../../../hooks/windowSize";
 
 const NewPost = () => {
 
