@@ -67,4 +67,5 @@
 
 .content {
   text-align: justify;
+  overflow-wrap: anywhere;
 }
