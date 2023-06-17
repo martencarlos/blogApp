@@ -60,13 +60,13 @@ const BlogPost = async ({ params, searchParams }) => {
           <div className={styles.row}>
             <div className={styles.author}>
               <Image
-                src={author[0].avatar}
+                src={author.avatar}
                 alt=""
                 width={40}
                 height={40}
                 className={styles.avatar}
               />
-              <span className={styles.username}>{author[0].name}</span>
+              <span className={styles.username}>{author.name}</span>
             </div>
             <Date dateString = {data.createdAt} className={styles.date}/>
           </div>
