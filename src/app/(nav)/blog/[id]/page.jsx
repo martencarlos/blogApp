@@ -41,7 +41,7 @@ export async function generateMetadata({ params }) {
 const BlogPost = async ({ params, searchParams }) => {
   const data = await getData(params.id);
   console.log(searchParams) // ?foo=bar
-  const promise = await fetch(process.env.SERVER+'/api/user/'+JSON.stringify(data.author),{
+  const promise = await fetch(process.env.SERVER+'/api/user/'+data.author,{
     method: 'GET',
   })
   const author = await promise.json();
