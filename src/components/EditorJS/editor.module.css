@@ -5,6 +5,12 @@
     }
 }
 
+@media screen and (min-width: 650px) and (max-width: 790px) {
+    .editorFullPage{
+      max-width: 518px !important;
+    }
+  }
+
 .editorFullPage{
     display: flex;
     flex-direction: column;
