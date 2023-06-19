@@ -4,10 +4,15 @@ import  { useCallback, useEffect, useRef, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize"
 import styles from "./editor.module.css"
 
-export default function Editor() {
+
+export default function Editor(props) {
   const [isMounted, setIsMounted] = useState(false);
   const [title, setTitle] = useState()
   const ref = useRef()
+
+  useEffect(() => {
+    props.saveTitle (title)
+  }, [title, props])
 
   const initializeEditor = useCallback(async () => {
     const EditorJS = (await import("@editorjs/editorjs")).default
@@ -18,6 +23,9 @@ export default function Editor() {
     const Code = (await import("@editorjs/code")).default
     const LinkTool = (await import("@editorjs/link")).default
     const InlineCode = (await import("@editorjs/inline-code")).default
+    const ImageTool = (await import("simple-image-editorjs")).default
+    
+    
   
     if (!ref.current) {
       const editor = new EditorJS({
@@ -25,6 +33,11 @@ export default function Editor() {
         onReady() {
           ref.current = editor
         },
+        onChange() {
+          ref.current.save().then((outputData) => {
+            props.saveDraft (outputData)
+            
+          })},
         placeholder: "Type here to write your post...",
         inlineToolbar: true,
         data: "content",
@@ -32,6 +45,7 @@ export default function Editor() {
           header: Header,
           linkTool: LinkTool,
           list: List,
+          image: ImageTool,
           code: Code,
           inlineCode: InlineCode,
           table: Table,
@@ -41,6 +55,7 @@ export default function Editor() {
     }
   }, [])
 
+  
   useEffect(() => {
     if (typeof window !== "undefined") {
       setIsMounted(true);
@@ -69,7 +84,10 @@ export default function Editor() {
           // defaultValue={post.title}
           placeholder="Post title"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => {
+        
+            setTitle(e.target.value)
+          }}
         />
       </div>
       {<div id='editor' className={styles.editor} />}

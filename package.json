@@ -17,6 +17,7 @@
     "@editorjs/link": "^2.5.0",
     "@editorjs/list": "^1.8.0",
     "@editorjs/paragraph": "^2.9.0",
+    "@editorjs/simple-image": "^1.5.1",
     "@editorjs/table": "^2.2.1",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
@@ -38,6 +39,7 @@
     "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-textarea-autosize": "^8.4.1",
     "sharp": "^0.32.1",
+    "simple-image-editorjs": "^1.4.0",
     "swr": "^2.1.5"
   },
   "devDependencies": {

@@ -19,6 +19,8 @@ import { useState } from "react";
 
 export default function EditorPage() {
   const [saving, setSaving] = useState(false);
+  const [content, setContent] = useState({});
+  const [title, setTitle] = useState({});
   //   const user = await getCurrentUser()
   //   const post = await getPostForUser(params.postId, user.id)
 
@@ -26,11 +28,16 @@ export default function EditorPage() {
   //     notFound()
   //   }
 
+
   function saveDraft() {
     setSaving(true);
-    setTimeout(() => {
-      setSaving(false);
-    }, 2000);
+
+    console.log(title)
+    console.log(content)
+
+    // setTimeout(() => {
+    setSaving(false);
+    // }, 2000);
   }
 
   return (
@@ -59,7 +66,10 @@ export default function EditorPage() {
           </Button>
         </div>
       </div>
-      <Editor />
+      <Editor 
+        saveDraft={setContent}
+        saveTitle={setTitle}
+      />
     </div>
   );
 }
