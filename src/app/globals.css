@@ -10,10 +10,21 @@
   .toolbar {
     margin-top: 10px;
   }
-
 }
-  
 
+@media screen and (min-width: 650px) {
+
+  .ce-toolbar__actions {
+    left: -65px;
+    right: unset !important;
+  }
+
+  .ce-toolbox .ce-popover{
+    left: -5px;
+    right: unset !important;
+  }
+  
+}
 
 :root {
   --max-width: 1100px;
@@ -86,6 +97,14 @@ a {
   background-color: var(--primary-color) !important;
   color: white !important;
 } */
+
+
+/* EditorJS */
+
+.codex-editor__redactor{
+  padding: 0px !important;
+  min-height: 300px;
+}
 
 /* Lexical */
 

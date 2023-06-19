@@ -61,16 +61,17 @@ export default function Editor() {
   if (!isMounted) return null;
 
   return (
-    <div className={styles.editorFullpage}>
-      <TextareaAutosize
-        autoFocus
-        id="title"
-        // defaultValue={post.title}
-        placeholder="Post title"
-        value={title}
-        className={styles.title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+    <div className={styles.editorFullPage}>
+      <div className={styles.title}>
+        <TextareaAutosize className={styles.textArea}
+          autoFocus
+          id="title"
+          // defaultValue={post.title}
+          placeholder="Post title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+      </div>
       {<div id='editor' className={styles.editor} />}
       
     </div>

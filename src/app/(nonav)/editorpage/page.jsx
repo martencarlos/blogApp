@@ -1,7 +1,12 @@
-"use client"
+"use client";
 // import { notFound, redirect } from "next/navigation"
 // import { getCurrentUser } from "@/lib/session"
 import Editor from "@/components/EditorJS/Editor";
+import Styles from "./page.module.css";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useState } from "react";
 
 // async function getPostForUser(postId, userId) {
 //   return await db.post.findFirst({
@@ -12,20 +17,49 @@ import Editor from "@/components/EditorJS/Editor";
 //   })
 // }
 
-export default async function EditorPage() {
-//   const user = await getCurrentUser()
-//   const post = await getPostForUser(params.postId, user.id)
+export default function EditorPage() {
+  const [saving, setSaving] = useState(false);
+  //   const user = await getCurrentUser()
+  //   const post = await getPostForUser(params.postId, user.id)
 
-//   if (!post) {
-//     notFound()
-//   }
+  //   if (!post) {
+  //     notFound()
+  //   }
+
+  function saveDraft() {
+    setSaving(true);
+    setTimeout(() => {
+      setSaving(false);
+    }, 2000);
+  }
 
   return (
-    <div>
-      <Editor 
-        
-      />
-    
+    <div className={Styles.editorPageFullPage}>
+      <div className={Styles.editorToolbar}>
+        <div className={Styles.editorToolbarLeft}>
+          <Button
+            className={Styles.editorToolbarBackButton}
+            variant="outlined"
+            startIcon={<ArrowBackIosNewIcon />}
+          >
+            Back
+          </Button>
+        </div>
+        <div className={Styles.editorToolbarRight}>
+          
+          <Button
+            onClick={saveDraft}
+            className={Styles.editorToolbarSaveButton}
+            variant="contained"
+          >
+            {saving ? 
+              <CircularProgress className={Styles.circularProgress} size={24} />
+            : 
+              "Save"}
+          </Button>
+        </div>
+      </div>
+      <Editor />
     </div>
-  )
+  );
 }
