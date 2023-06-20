@@ -3,7 +3,7 @@
 import  { useCallback, useEffect, useRef, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize"
 import styles from "./editor.module.css"
-
+import edjsHTML from "editorjs-html"
 
 export default function Editor(props) {
   const [isMounted, setIsMounted] = useState(false);
@@ -24,8 +24,11 @@ export default function Editor(props) {
     const LinkTool = (await import("@editorjs/link")).default
     const InlineCode = (await import("@editorjs/inline-code")).default
     const ImageTool = (await import("simple-image-editorjs")).default
-    
-    
+    const Delimiter = (await import("@editorjs/delimiter")).default
+    const Checklist = (await import("@editorjs/checklist")).default
+    const Marker = (await import("@editorjs/marker")).default
+    const ColorPlugin = (await import("editorjs-text-color-plugin")).default
+    const AlignmentTuneTool = (await import("editorjs-text-alignment-blocktune")).default
   
     if (!ref.current) {
       const editor = new EditorJS({
@@ -35,21 +38,61 @@ export default function Editor(props) {
         },
         onChange() {
           ref.current.save().then((outputData) => {
-            props.saveDraft (outputData)
+
+            const edjsParser = edjsHTML();
+            const html = edjsParser.parse(outputData);
+            props.saveDraft (html)
             
           })},
         placeholder: "Type here to write your post...",
         inlineToolbar: true,
         data: "content",
         tools: {
-          header: Header,
+          header: {
+            class: Header,
+            tunes: ['anyTuneName'],
+          },
+          Color: {
+            class: ColorPlugin, 
+            config: {
+               colorCollections: ['#EC7878','#9C27B0','#673AB7','#3F51B5','#0070FF','#03A9F4','#00BCD4','#4CAF50','#8BC34A','#CDDC39', '#FFF'],
+               defaultColor: '#FF1300',
+               type: 'text', 
+               customPicker: true 
+            }     
+          },
           linkTool: LinkTool,
+          Marker: {
+            class: Marker,
+            shortcut: 'CMD+SHIFT+M',
+          },
           list: List,
+          checklist: {
+            class: Checklist,
+            inlineToolbar: true,
+          },
           image: ImageTool,
+          delimiter: Delimiter,
           code: Code,
+          paragraph: {
+            tunes: ['anyTuneName'],
+          },
           inlineCode: InlineCode,
           table: Table,
-          embed: Embed,
+          anyTuneName: {
+            class:AlignmentTuneTool,
+            config:{
+              default: "left",
+              blocks: {
+                header: 'center',
+                list: 'right'
+              }
+            },
+          },
+          embed: {
+            class: Embed,
+            inlineToolbar: true
+          },
         },
       })
     }

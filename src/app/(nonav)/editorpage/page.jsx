@@ -8,6 +8,8 @@ import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useState } from "react";
 
+
+
 // async function getPostForUser(postId, userId) {
 //   return await db.post.findFirst({
 //     where: {
@@ -19,7 +21,7 @@ import { useState } from "react";
 
 export default function EditorPage() {
   const [saving, setSaving] = useState(false);
-  const [content, setContent] = useState({});
+  const [content, setContent] = useState();
   const [title, setTitle] = useState({});
   //   const user = await getCurrentUser()
   //   const post = await getPostForUser(params.postId, user.id)
@@ -70,6 +72,12 @@ export default function EditorPage() {
         saveDraft={setContent}
         saveTitle={setTitle}
       />
+      <div className={Styles.renderedText}>
+      
+            {/*content ? 
+              <div dangerouslySetInnerHTML={{ __html: content.join(" ") }} />
+            : "empty"*/}
+      </div>
     </div>
   );
 }
