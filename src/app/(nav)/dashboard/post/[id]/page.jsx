@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 // import React from "react";
 import Editor from "@/components/Editor/Editor";
 import EditorSidebar from "@/components/EditorSidebar/EditorSidebar";
-import { useWindowSize } from "@/app/hooks/windowSize";
+import { useWindowSize } from "@/hooks/windowSize";
 import ViewSidebarIcon from '@mui/icons-material/ViewSidebar';
 import { useRouter } from "next/navigation";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';

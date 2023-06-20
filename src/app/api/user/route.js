@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import dbConnect from "../../lib/dbConnect";
+import dbConnect from "../../../lib/dbConnect";
 import User from "../../../models/User";
-import { app } from "../../lib/firebase";
+import { app } from "../../../lib/firebase";
 import { getStorage, ref, uploadBytes, getDownloadURL   } from "firebase/storage";
 
 

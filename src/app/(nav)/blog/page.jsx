@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import Date from "@/utils/date";
-import { getAllPosts } from "@/app/lib/getAllPosts";
+import { getAllPosts } from "@/lib/getAllPosts";
 
 const Blog = async () => {
 

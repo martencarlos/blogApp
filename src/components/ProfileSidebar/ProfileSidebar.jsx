@@ -18,7 +18,7 @@ import Loading from "@/components/Loading/Loading";
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
 import { ThemeContext } from "../../context/ThemeContext";
-import { useWindowSize } from "../../app/hooks/windowSize";
+import { useWindowSize } from "../../hooks/windowSize";
 
 
 const ProfileSidebar = () => {
