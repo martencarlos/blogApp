@@ -18,7 +18,18 @@ const Avatar = () => {
   const session = useSession();
   const { mode } = useContext(ThemeContext);
 
-  //close hamburguer menu if clicked outside the menu
+  // Dark mode profileMenu
+  useEffect(() => {
+    const profileMenu = document.getElementById("profileMenu");
+
+    if (navMenu && mode === "dark") {
+      profileMenu.classList.add(styles.profileMenuDark);
+    } else if (navMenu && mode === "light") {
+      profileMenu.classList.remove(styles.profileMenuDark);
+    }
+  }, [mode]);
+
+  //Event listener - close hamburguer menu if clicked outside the menu
   useEffect(() => {
     const website = document.getElementById("website");
     website.addEventListener("click", closeProfileMenu);
@@ -27,6 +38,20 @@ const Avatar = () => {
       website.removeEventListener("click", closeProfileMenu);
     };
   }, []);
+
+ 
+  function showProfileMenu() {
+    // const profileMenuStyle = window.getComputedStyle(document.getElementById("profileMenu"))
+    var elms = document.querySelectorAll("[id='profileMenu']");
+
+    for (var i = 0; i < elms.length; i++) {
+      if (elms[i].style.display === "none" || elms[i].style.display === "") {
+        elms[i].style.display = "block";
+      } else {
+        elms[i].style.display = "none";
+      }
+    }
+  }
 
   function closeProfileMenu(e) {
     const profileMenu = document.getElementById("profileMenu");
@@ -47,30 +72,6 @@ const Avatar = () => {
           // }
         }
       }, 100);
-    }
-  }
-
-  // Dark mode profileMenu
-  useEffect(() => {
-    const profileMenu = document.getElementById("profileMenu");
-
-    if (navMenu && mode === "dark") {
-      profileMenu.classList.add(styles.profileMenuDark);
-    } else if (navMenu && mode === "light") {
-      profileMenu.classList.remove(styles.profileMenuDark);
-    }
-  }, [mode]);
-
-  function showProfileMenu() {
-    // const profileMenuStyle = window.getComputedStyle(document.getElementById("profileMenu"))
-    var elms = document.querySelectorAll("[id='profileMenu']");
-
-    for (var i = 0; i < elms.length; i++) {
-      if (elms[i].style.display === "none" || elms[i].style.display === "") {
-        elms[i].style.display = "block";
-      } else {
-        elms[i].style.display = "none";
-      }
     }
   }
 

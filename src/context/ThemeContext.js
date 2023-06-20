@@ -1,18 +1,17 @@
-"use client"
+"use client";
 
 import { createContext, useEffect, useState } from "react";
 
 export const ThemeContext = createContext({
-  theme: "",
+  mode: "",
   toggle: null,
 });
 
 export const ThemeProvider = ({ children }) => {
-
   // const localStorageTheme = typeof window !== 'undefined' ? localStorage.getItem("theme") : "light"
 
-  const [mode, setMode] = useState('light');
-    
+  const [mode, setMode] = useState();
+
   useEffect(() => {
       if (typeof window !== 'undefined'){
         if(localStorage.getItem("theme") !== null){
@@ -23,7 +22,7 @@ export const ThemeProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && mode)
+    if (typeof window !== "undefined" && mode)
       localStorage.setItem("theme", mode);
   }, [mode]);
 
@@ -32,11 +31,8 @@ export const ThemeProvider = ({ children }) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ toggle, mode }}>
-      <div className={`theme ${mode}`}>
-        {children}
-      </div>
+    mode &&<ThemeContext.Provider value={{ toggle, mode }}>
+      <div className={`theme ${mode}`}>{children}</div>
     </ThemeContext.Provider>
   );
 };
-

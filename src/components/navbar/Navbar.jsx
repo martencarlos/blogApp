@@ -50,7 +50,7 @@ const Navbar = () => {
   const { mode } = useContext(ThemeContext);
   const profileMenuDisplay = useRef(null);
 
-  // NavMenu click outside handler
+  // Event listener - NavMenu click outside handler
   useEffect(() => {
     function handleClickOutside(event) {
       
@@ -59,9 +59,7 @@ const Navbar = () => {
       if (profileMenu.style.display === "block")
         profileMenuDisplay.current = profileMenu.style.display;
 
-     
       setTimeout(() => {
-    
         if(navMenu.style.display === "flex"){
           if(event.target.tagName==="A")
            navMenu.style.display = "none"
@@ -72,14 +70,6 @@ const Navbar = () => {
           if(profileMenuDisplay.current === "block") 
             profileMenuDisplay.current = "null";
         }
-
-        // if(navMenu.style.display === "flex" &&  profileMenuDisplay.current !== "block" || event.target.tagName==="a") {
-        //   if (typeof event.target.className.includes !== 'undefined' &&  !(event.target.className.indexOf("navbar") >= 0) && !event.target.className.includes("avatar") && event.target.tagName !== "path" && event.target.tagName !== "svg") {
-        //     navMenu.style.display = "none"
-        //   }
-        // }else if(profileMenuDisplay.current === "block") 
-        //   profileMenuDisplay.current = "null";
-        
       }, 100);
     }
     document.addEventListener("click", handleClickOutside);
