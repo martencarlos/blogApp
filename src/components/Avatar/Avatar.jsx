@@ -77,6 +77,7 @@ const Avatar = () => {
 
   return (
     <div id="avatarContainer" className={styles.avatarContainer}>
+      
       <Image
         alt="profile"
         src={session.data ? session.data.user.avatar : "/default.png"}
