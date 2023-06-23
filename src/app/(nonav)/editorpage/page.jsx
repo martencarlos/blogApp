@@ -74,9 +74,9 @@ export default function EditorPage() {
       />
       <div className={Styles.renderedText}>
       
-            {/*content ? 
+            {content ? 
               <div dangerouslySetInnerHTML={{ __html: content.join(" ") }} />
-            : "empty"*/}
+            : "empty"}
       </div>
     </div>
   );

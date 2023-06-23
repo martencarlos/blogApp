@@ -33,6 +33,29 @@ export default function Editor(props) {
       await import("editorjs-text-alignment-blocktune")
     ).default;
 
+    function checklistReturn(block){
+      console.log(block.data)
+      return <div>
+      <div>{block.data.text}</div>
+      { /*block.data.items.map((item, i) =>(
+                
+         <div key={i}>{ item.text}</div>
+       ))*/}
+    </div>
+  }
+
+    function checklistReturn(arr) {
+      return arr.map(item => `<li class='text-warning'>${item.text}</li>`);
+    }
+
+    function checklist(block){
+      
+      return `
+        <div> 
+          ${checklistReturn(block.data.items).join(" ")} 
+        </div>`
+    }
+
     if (!ref.current) {
       const editor = new EditorJS({
         holder: "editor",
@@ -41,7 +64,8 @@ export default function Editor(props) {
         },
         onChange() {
           ref.current.save().then((outputData) => {
-            const edjsParser = edjsHTML();
+            
+            const edjsParser = edjsHTML( {checklist: checklist});
             const html = edjsParser.parse(outputData);
             props.saveDraft(html);
           });
